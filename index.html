@@ -422,8 +422,9 @@
     </div>
 
     <!-- Audio player -->
-    <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4c1c96b41d.mp3" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/audio/2023/10/04/audio_24b50c9f6e.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
@@ -873,7 +874,18 @@
         let isPlaying = false;
 
         // Définir le volume
-        bgMusic.volume = 0.3;
+        bgMusic.volume = 0.4;
+
+        // Tester si l'audio est chargé
+        bgMusic.addEventListener('canplay', () => {
+            console.log('Audio prêt à être joué');
+        });
+
+        bgMusic.addEventListener('error', (e) => {
+            console.log('Erreur de chargement audio:', e);
+            audioToggle.textContent = '❌ Audio indisponible';
+            audioToggle.style.background = 'rgba(80, 0, 0, 0.5)';
+        });
 
         audioToggle.addEventListener('click', () => {
             if (isPlaying) {
@@ -882,18 +894,25 @@
                 audioToggle.style.background = 'rgba(139, 0, 0, 0.8)';
                 isPlaying = false;
             } else {
-                bgMusic.play().then(() => {
-                    audioToggle.textContent = '🔇 Pause';
-                    audioToggle.style.background = 'rgba(139, 0, 0, 1)';
-                    isPlaying = true;
-                }).catch(error => {
-                    console.log('Erreur de lecture audio:', error);
-                    alert('Clique sur le bouton Musique pour activer le son');
-                });
+                // Essayer de jouer
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        audioToggle.textContent = '🔇 Pause';
+                        audioToggle.style.background = 'rgba(139, 0, 0, 1)';
+                        isPlaying = true;
+                        console.log('Audio en cours de lecture');
+                    }).catch(error => {
+                        console.log('Erreur de lecture:', error);
+                        audioToggle.textContent = '⚠️ Clique encore';
+                        audioToggle.style.background = 'rgba(139, 0, 0, 0.6)';
+                    });
+                }
             }
         });
 
-        // Message au chargement
+        // Animation du bouton au chargement
         window.addEventListener('load', () => {
             setTimeout(() => {
                 if (!isPlaying) {
