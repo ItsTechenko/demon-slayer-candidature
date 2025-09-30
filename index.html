@@ -872,17 +872,34 @@
         const bgMusic = document.getElementById('bgMusic');
         let isPlaying = false;
 
+        // Définir le volume
+        bgMusic.volume = 0.3;
+
         audioToggle.addEventListener('click', () => {
             if (isPlaying) {
                 bgMusic.pause();
                 audioToggle.textContent = '🔊 Musique';
                 audioToggle.style.background = 'rgba(139, 0, 0, 0.8)';
+                isPlaying = false;
             } else {
-                bgMusic.play();
-                audioToggle.textContent = '🔇 Pause';
-                audioToggle.style.background = 'rgba(139, 0, 0, 1)';
+                bgMusic.play().then(() => {
+                    audioToggle.textContent = '🔇 Pause';
+                    audioToggle.style.background = 'rgba(139, 0, 0, 1)';
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('Erreur de lecture audio:', error);
+                    alert('Clique sur le bouton Musique pour activer le son');
+                });
             }
-            isPlaying = !isPlaying;
+        });
+
+        // Message au chargement
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (!isPlaying) {
+                    audioToggle.style.animation = 'pulse 1s ease-in-out 3';
+                }
+            }, 1000);
         });
 
         audioToggle.addEventListener('mouseenter', () => {
