@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lune Démoniaque Inférieure 5 - Candidature</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d0000 0%, #1a0a0a 50%, #050510 100%);
+            color: #e0e0e0;
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blood-drip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg, rgba(100, 0, 0, 0.5) 0%, rgba(139, 0, 0, 0.3) 30%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+            animation: bloodPulse 3s infinite;
+        }
+
+        @keyframes bloodPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        .blood-rain {
+            position: fixed;
+            top: -50px;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(transparent, #8b0000, #ff0000);
+            pointer-events: none;
+            z-index: 1;
+            animation: rain linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes rain {
+            0% {
+                height: 0;
+                top: -50px;
+            }
+            50% {
+                height: 100px;
+            }
+            100% {
+                height: 0;
+                top: 100vh;
+            }
+        }
+
+        .thunder-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .moon-symbol {
+            font-size: 120px;
+            color: #8b0000;
+            text-shadow: 
+                0 0 30px rgba(139, 0, 0, 0.9), 
+                0 0 60px rgba(139, 0, 0, 0.6),
+                0 0 90px rgba(255, 0, 0, 0.4);
+            animation: pulseDemon 2s infinite, float 4s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulseDemon {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 0.9;
+                filter: brightness(1);
+            }
+            25% {
+                transform: scale(1.03) rotate(2deg);
+            }
+            50% { 
+                transform: scale(1.08) rotate(-2deg); 
+                opacity: 1;
+                filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
+            }
+            75% {
+                transform: scale(1.03) rotate(1deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff2222;
+            text-shadow: 
+                0 0 20px rgba(255, 34, 34, 0.8),
+                0 0 40px rgba(139, 0, 0, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            animation: titleGlow 3s infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(255, 34, 34, 0.8),
+                    0 0 40px rgba(139, 0, 0, 0.6),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 34, 34, 1),
+                    0 0 60px rgba(255, 0, 0, 0.8),
+                    0 0 90px rgba(139, 0, 0, 0.6),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #aa6666;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: rgba(20, 0, 0, 0.6);
+            border: 2px solid #8b0000;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #aa6666;
+            font-size: 1.1em;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+
+        .tab:hover {
+            background: rgba(139, 0, 0, 0.3);
+            transform: translateY(-3px);
+            color: #ff6666;
+        }
+
+        .tab.active {
+            background: rgba(139, 0, 0, 0.5);
+            border-bottom: 2px solid #ff4444;
+            color: #ff6666;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+        }
+
+        .content-container {
+            background: rgba(10, 0, 0, 0.85);
+            border: 2px solid #8b0000;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 
+                0 0 30px rgba(139, 0, 0, 0.5),
+                inset 0 0 50px rgba(139, 0, 0, 0.1);
+            min-height: 500px;
+            position: relative;
+        }
+
+        .content-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 0, 0, 0.03) 2px,
+                    rgba(139, 0, 0, 0.03) 4px
+                );
+            pointer-events: none;
+            border-radius: 15px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #ff6666;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 102, 102, 0.3);
+        }
+
+        h3 {
+            color: #ff8888;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        h4 {
+            color: #ff6666;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            color: #ff8888;
+            font-weight: bold;
+        }
+
+        .project-item {
+            background: rgba(139, 0, 0, 0.2);
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #8b0000;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .project-item:hover {
+            background: rgba(139, 0, 0, 0.3);
+            transform: translateX(10px);
+        }
+
+        .project-item h3 {
+            color: #ff6666;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #aa6666;
+            font-style: italic;
+            margin-top: 40px;
+        }
+
+        .flame {
+            display: inline-block;
+            color: #ff4444;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .blood-splatter {
+            position: fixed;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, rgba(80, 0, 0, 0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: splatPulse 4s infinite;
+        }
+
+        @keyframes splatPulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .splatter1 { 
+            top: 10%; 
+            left: 5%; 
+            width: 120px; 
+            height: 120px;
+            animation-delay: 0s;
+        }
+        .splatter2 { 
+            top: 60%; 
+            right: 10%; 
+            width: 90px; 
+            height: 90px;
+            animation-delay: 1.3s;
+        }
+        .splatter3 { 
+            bottom: 20%; 
+            left: 15%; 
+            width: 100px; 
+            height: 100px;
+            animation-delay: 2.6s;
+        }
+
+        .skull-decoration {
+            position: fixed;
+            font-size: 40px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatSlow 20s infinite ease-in-out;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .stat-box {
+            display: inline-block;
+            background: rgba(139, 0, 0, 0.3);
+            padding: 15px 25px;
+            margin: 10px;
+            border: 2px solid #8b0000;
+            border-radius: 10px;
+        }
+
+        .stat-label {
+            color: #aa6666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            color: #ff6666;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="blood-drip"></div>
+    <div class="thunder-flash" id="thunderFlash"></div>
+    <div class="blood-splatter splatter1"></div>
+    <div class="blood-splatter splatter2"></div>
+    <div class="blood-splatter splatter3"></div>
+    
+    <!-- Décorations de crânes -->
+    <div class="skull-decoration" style="top: 15%; right: 8%;">💀</div>
+    <div class="skull-decoration" style="bottom: 25%; left: 12%; animation-delay: 5s;">☠️</div>
+    <div class="skull-decoration" style="top: 70%; right: 15%; animation-delay: 10s;">💀</div>
+
+    <!-- Contrôle audio -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button id="audioToggle" style="background: rgba(139, 0, 0, 0.8); border: 2px solid #ff4444; color: #ff6666; padding: 12px 20px; cursor: pointer; border-radius: 8px; font-family: Georgia, serif; font-size: 1em; transition: all 0.3s; box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);">
+            🔊 Musique
+        </button>
+    </div>
+
+    <!-- Audio player -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4c1c96b41d.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <header>
+            <div class="moon-symbol">☾</div>
+            <h1>CANDIDATURE</h1>
+            <div class="subtitle">Lune Démoniaque Inférieure <span class="flame">五</span></div>
+        </header>
+
+        <div class="tabs-container">
+            <div class="tab active" onclick="openTab('histoire')">⛧ Histoire</div>
+            <div class="tab" onclick="openTab('motivations')">⛧ Motivations</div>
+            <div class="tab" onclick="openTab('projets')">⛧ Projets</div>
+            <div class="tab" onclick="openTab('competences')">⛧ Compétences</div>
+            <div class="tab" onclick="openTab('engagement')">⛧ Engagement</div>
+        </div>
+
+        <div class="content-container">
+            <div id="histoire" class="tab-content active">
+                <h2>☠ Histoire Sombre</h2>
+                
+                <h3>L'Existence Humaine - Les Racines de la Haine</h3>
+                <p>
+                    Mon histoire débute dans un village misérable de la préfecture de Gifu, où la pauvreté 
+                    et la maladie régnaient en maîtres absolus. Né dans une famille de paysans sans importance, 
+                    j'ai grandi en observant l'<span class="highlight">hypocrisie et la cruauté</span> de l'humanité. 
+                    Les nobles nous traitaient comme du bétail, les marchands nous exploitaient, et même nos voisins 
+                    nous volaient le peu que nous possédions.
+                </p>
+                <p>
+                    Mon père, un homme brisé par le labeur, mourut écrasé sous les roues d'un chariot appartenant 
+                    à un seigneur local. Aucune compensation, aucune excuse. Ma mère, dans son désespoir, tenta de 
+                    demander justice. Elle fut battue publiquement pour son "insolence". Je n'avais que douze ans, 
+                    mais ce jour-là, <span class="highlight">la graine de ma transformation fut plantée</span>.
+                </p>
+                <p>
+                    Les années suivantes, je survécus par la ruse et le vol. J'appris à me battre dans les ruelles 
+                    sombres, à mentir avec un sourire, à détester avec une intensité brûlante. La société humaine 
+                    m'avait tout pris, et en retour, je ne lui devais que mépris. Chaque jour renforçait ma conviction : 
+                    l'humanité ne méritait que souffrance.
+                </p>
+
+                <h3>La Nuit de la Transformation</h3>
+                <p>
+                    À vingt-trois ans, après une décennie de survie misérable, ma vie bascula définitivement. 
+                    J'avais rejoint une bande de brigands, pillant les routes commerciales. Nous pensions être 
+                    des prédateurs redoutables, mais nous n'étions que des proies ignorantes.
+                </p>
+                <p>
+                    Cette nuit-là, sous une <span class="highlight">lune rouge sang</span>, un démon attaqua notre 
+                    campement. En quelques secondes, mes compagnons furent déchiquetés. Je me retrouvai face à face 
+                    avec cette créature magnifique et terrifiante. Plutôt que de supplier pour ma vie comme un lâche, 
+                    je crachai mon sang à ses pieds et prononçai les mots qui changeraient mon destin : 
+                    <em>"Si tu dois me tuer, fais-le. Mais si tu peux m'offrir le pouvoir que tu possèdes, 
+                    je te servirai jusqu'à la fin des temps."</em>
+                </p>
+                <p>
+                    Le démon, amusé par mon audace et ma haine palpable envers l'humanité, me proposa un marché. 
+                    Il possédait une fiole de sang démoniaque, un cadeau rare de Muzan-sama lui-même, destiné à 
+                    créer de nouveaux serviteurs. Mais la transformation tuerait probablement un faible d'esprit. 
+                    <span class="highlight">Je bus cette essence sans hésitation</span>.
+                </p>
+                <p>
+                    La douleur fut indescriptible. Chaque cellule de mon corps brûlait, se déchirait, se reconstruisait. 
+                    J'agonisai pendant trois jours entiers dans une grotte isolée. Des visions cauchemardesque 
+                    assaillirent mon esprit : mes souvenirs humains se consumaient, remplacés par une faim insatiable 
+                    et une clarté mentale surnaturelle. Quand enfin la transformation s'acheva, je n'étais plus 
+                    l'homme pathétique que j'avais été. J'étais <span class="highlight">renaissance incarnée</span>.
+                </p>
+
+                <h3>Les Premières Décennies - L'Apprentissage de la Prédation</h3>
+                <p>
+                    Mes premières années en tant que démon furent chaotiques. La soif de sang me consumait, 
+                    et j'attaquais sans discrimination ni stratégie. Je massacrai mon ancien village en une seule nuit, 
+                    savourant chaque instant de vengeance. Le seigneur qui avait tué mon père périt en premier, 
+                    suppliant pitoyablement alors que je dévorais sa chair.
+                </p>
+                <p>
+                    Mais cette existence primitive ne pouvait durer. Un groupe de pourfendeurs de démons faillit 
+                    m'éliminer lors d'un affrontement près de Kyoto. Je m'échappai de justesse, <span class="highlight">grièvement 
+                    blessé et humilié</span>. Cette défaite fut une leçon cruciale : la puissance brute ne suffisait pas. 
+                    Je devais devenir plus intelligent, plus calculateur.
+                </p>
+                <p>
+                    Je passai les vingt années suivantes à perfectionner mon art. Je voyageai à travers le Japon, 
+                    observant les techniques des autres démons, étudiant les faiblesses des pourfendeurs. J'appris à 
+                    dissimuler ma présence, à choisir mes victimes stratégiquement, à fuir quand nécessaire plutôt 
+                    que de périr par orgueil stupide.
+                </p>
+                <p>
+                    J'évitai soigneusement les Hashira, conscient qu'ils étaient au-delà de mes capacités actuelles. 
+                    Je chassai les pourfendeurs moins expérimentés, apprenant de chaque confrontation. Chaque combat 
+                    me rendait plus rapide, plus précis, plus mortel.
+                </p>
+
+                <h3>L'Éveil Véritable - Le Développement des Arts Sanguinaires</h3>
+                <p>
+                    Il y a dix ans, lors d'une nuit particulièrement glaciale dans les montagnes du nord, j'eus une 
+                    révélation. En dévorant un guerrier particulièrement coriace, dont le sang possédait une qualité 
+                    inhabituelle, je sentis quelque chose s'éveiller en moi. <span class="highlight">Mon propre art 
+                    sanguinaire commença à prendre forme</span>.
+                </p>
+                <p>
+                    Pendant des années, je m'entraînai dans l'isolement total, perfectionnant mes techniques. 
+                    Je découvris que je pouvais manipuler mon propre sang d'une manière unique, créant des lames 
+                    invisibles et des pièges mortels. Ma régénération s'accéléra considérablement grâce à une 
+                    consommation sélective d'humains aux qualités nutritionnelles optimales.
+                </p>
+                <p>
+                    Je commençai également à comprendre la structure politique du monde démoniaque. Les rumeurs 
+                    parlaient des <span class="highlight">Douze Lunes Démoniaques</span>, l'élite absolue servant 
+                    directement Muzan-sama. Ces êtres transcendaient tout ce que j'avais rencontré. Observer de loin 
+                    une Lune Supérieure massacrer un groupe de Hashira me confirma une chose : c'était ce niveau 
+                    que je devais atteindre.
+                </p>
+
+                <h3>Le Présent - La Quête du Rang</h3>
+                <p>
+                    Aujourd'hui, après près d'un siècle d'existence démoniaque, je me tiens à un carrefour crucial. 
+                    J'ai survécu là où d'innombrables autres démons ont péri. J'ai développé des compétences uniques 
+                    et une compréhension stratégique du combat. Mais surtout, j'ai maintenu une <span class="highlight">
+                    loyauté inébranlable envers Muzan-sama et sa vision</span>.
+                </p>
+                <p>
+                    Mon parcours a été marqué par la solitude et la détermination. J'ai vu des démons tomber 
+                    par arrogance, faiblesse ou trahison. J'ai étudié leurs erreurs, intégrant chaque leçon dans 
+                    ma propre philosophie de survie et de domination. Je sais maintenant que pour servir véritablement, 
+                    je dois rejoindre les rangs d'élite.
+                </p>
+                <p>
+                    La position de Lune Démoniaque Inférieure 5 n'est pas une fin, mais un <span class="highlight">
+                    commencement</span>. C'est la porte d'entrée vers une ascension qui me mènera, je l'espère, 
+                    jusqu'aux sommets de la hiérarchie démoniaque. Mon histoire n'est pas celle d'un simple survivant, 
+                    mais celle d'un prédateur patient qui a attendu son heure.
+                </p>
+                <p>
+                    Chaque cicatrice, chaque victoire, chaque défaite m'a façonné. Je suis prêt. Mon passé humain 
+                    n'est qu'un souvenir lointain et méprisable. Mon présent est celui d'un démon dévoué. 
+                    Et mon futur sera écrit dans le sang des pourfendeurs et la gloire du service à Muzan-sama.
+                </p>
+            </div>
+
+            <div id="motivations" class="tab-content">
+                <h2>🔥 Motivations Profondes</h2>
+                <p>
+                    Pourquoi aspirer au rang de <span class="highlight">Lune Démoniaque Inférieure 5</span> ? 
+                    La réponse transcende la simple quête de pouvoir.
+                </p>
+                <p>
+                    <strong>Servir Muzan-sama</strong> n'est pas une obligation, c'est un honneur suprême. 
+                    Rejoindre les Douze Lunes Démoniaques signifie incarner la perfection de notre espèce, 
+                    devenir un instrument de terreur pure et efficace contre l'humanité pathétique.
+                </p>
+                <p>
+                    Mon ambition est de <span class="highlight">prouver ma valeur</span> non par des paroles vides, 
+                    mais par des actions sanglantes et décisives. Je ne cherche pas simplement à survivre, 
+                    mais à dominer, à inspirer la peur, à être le cauchemar qui hante les pourfendeurs de démons.
+                </p>
+                <p>
+                    La position de Lune Inférieure 5 sera ma plateforme pour démontrer que je peux évoluer, 
+                    gravir les échelons, et un jour peut-être rejoindre les rangs des Lunes Supérieures. 
+                    Chaque mission sera une opportunité de prouver ma loyauté et ma puissance.
+                </p>
+                <p>
+                    Je suis motivé par la <span class="highlight">haine pure</span> envers les pourfendeurs 
+                    qui osent défier notre maître, et par le désir de voir l'humanité trembler devant notre règne.
+                </p>
+            </div>
+
+            <div id="projets" class="tab-content">
+                <h2>💀 Projets Démoniaques</h2>
+                
+                <div class="project-item">
+                    <h3>☠ Terroriser les Villages Isolés</h3>
+                    <p>
+                        Établir une présence dominante dans les régions reculées, créant une atmosphère 
+                        de peur constante. Chaque attaque sera méthodique, laissant des survivants 
+                        traumatisés pour propager ma légende. Les villages apprendront à prononcer mon nom 
+                        avec terreur.
+                    </p>
+                </div>
+
+                <div class="project-item">
+                    <h3>☠ Affiner mes Techniques de Combat</h3>
+                    <p>
+                        Développer des arts sanguinaires uniques et dévastateurs. Mon style de combat 
+                        combinera vitesse, brutalité et techniques démoniaques pour surpasser tout 
+                        pourfendeur qui ose me défier. L'entraînement constant est la clé de la suprématie.
+                    </p>
+                </div>
+
+                <div class="project-item">
+                    <h3>☠ Collecter des Informations</h3>
+                    <p>
+                        Infiltrer et espionner les Corps des Pourfendeurs, identifiant leurs faiblesses, 
+                        leurs stratégies, et leurs membres les plus dangereux. Servir Muzan-sama avec 
+                        du renseignement précieux qui pourrait faire la différence dans notre guerre.
+                    </p>
+                </div>
+
+                <div class="project-item">
+                    <h3>☠ Recruter et Convertir</h3>
+                    <p>
+                        Identifier les humains désespérés et ambitieux, leur offrant la transformation 
+                        démoniaque. Créer un réseau de démons subalternes loyaux pour étendre notre influence 
+                        et servir de première ligne contre les pourfendeurs.
+                    </p>
+                </div>
+
+                <div class="project-item">
+                    <h3>☠ Établir des Territoires</h3>
+                    <p>
+                        Contrôler des zones stratégiques où les pourfendeurs ne peuvent facilement pénétrer. 
+                        Ces bastions deviendront des refuges pour les démons et des pièges mortels pour 
+                        nos ennemis.
+                    </p>
+                </div>
+            </div>
+
+            <div id="competences" class="tab-content">
+                <h2>⚔️ Compétences & Capacités</h2>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <div class="stat-box">
+                        <div class="stat-label">Puissance</div>
+                        <div class="stat-value">★★★★☆</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Vitesse</div>
+                        <div class="stat-value">★★★★★</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Intelligence</div>
+                        <div class="stat-value">★★★★☆</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ff3333; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; text-align: center; text-shadow: 0 0 20px rgba(255, 51, 51, 0.6);">
+                    🩸 ART SANGUINAIRE : BANSHEE 🩸
+                </h3>
+
+                <div style="background: rgba(139, 0, 0, 0.3); padding: 25px; border: 3px solid #8b0000; border-radius: 10px; margin: 20px 0;">
+                    <p style="font-size: 1.15em; color: #ffaaaa; margin-bottom: 15px;">
+                        <strong>Origine :</strong> Développé après avoir dévoré une cantatrice maudite dont les 
+                        cordes vocales étaient imprégnées d'une énergie spirituelle corrompue. Cette fusion unique 
+                        m'a permis de créer un art sanguinaire basé sur les <span class="highlight">fréquences sonores 
+                        létales et la manipulation des ondes de sang</span>.
+                    </p>
+                </div>
+
+                <h4 style="color: #ff6666; margin-top: 30px; margin-bottom: 15px; font-size: 1.4em;">📢 Techniques Principales</h4>
+
+                <div class="project-item" style="background: rgba(139, 0, 0, 0.25); border-left: 4px solid #ff3333;">
+                    <h3>Première Forme : Cri du Désespoir</h3>
+                    <p>
+                        Je libère une onde sonore dévastatrice imprégnée de mon sang démoniaque. Cette attaque 
+                        invisible frappe dans un rayon de 50 mètres, <span class="highlight">désorganisant les 
+                        organes internes</span> des victimes et provoquant des hémorragies massives. Les cibles 
+                        entendent un hurlement spectral qui résonne directement dans leur crâne, les paralysant 
+                        de terreur pendant quelques secondes cruciales.
+                    </p>
+                    <p style="margin-top: 10px; color: #aa6666;">
+                        <em>Effet secondaire : Provoque des hallucinations auditives chez les survivants pendant des jours.</em>
+                    </p>
+                </div>
+
+                <div class="project-item" style="background: rgba(139, 0, 0, 0.25); border-left: 4px solid #ff3333;">
+                    <h3>Deuxième Forme : Résonance Écarlate</h3>
+                    <p>
+                        En contrôlant les vibrations de mon propre sang, je peux créer des <span class="highlight">
+                        lames soniques cristallisées</span> qui oscillent à des fréquences mortelles. Ces projectiles 
+                        invisibles traversent les défenses ordinaires et font résonner le sang de mes ennemis jusqu'à 
+                        le faire exploser de l'intérieur. Particulièrement efficace contre les utilisateurs de Souffle, 
+                        car leurs techniques respiratoires amplifient involontairement ma résonance.
+                    </p>
+                    <p style="margin-top: 10px; color: #aa6666;">
+                        <em>Portée : 30 mètres | Peut cibler jusqu'à 5 ennemis simultanément</em>
+                    </p>
+                </div>
+
+                <div class="project-item" style="background: rgba(139, 0, 0, 0.25); border-left: 4px solid #ff3333;">
+                    <h3>Troisième Forme : Écho du Massacre</h3>
+                    <p>
+                        Technique de zone qui crée un <span class="highlight">champ de résonance meurtrière</span>. 
+                        Je libère mon sang dans l'air sous forme de brume microscopique qui vibre constamment à des 
+                        fréquences variées. Toute personne dans cette zone subit une désorientation massive, des 
+                        saignements des yeux et des oreilles, et une perte progressive de coordination. Plus mes 
+                        ennemis restent dans la zone, plus les dégâts s'accumulent de manière exponentielle.
+                    </p>
+                    <p style="margin-top: 10px; color: #aa6666;">
+                        <em>Durée : 5 minutes | Rayon : 100 mètres | Coût : Consommation modérée de sang</em>
+                    </p>
+                </div>
+
+                <div class="project-item" style="background: rgba(139, 0, 0, 0.25); border-left: 4px solid #ff3333;">
+                    <h3>Quatrième Forme : Lamentation Silencieuse</h3>
+                    <p>
+                        Ma technique la plus insidieuse. Je peux émettre des <span class="highlight">ultrasons 
+                        inaudibles</span> qui s'infiltrent dans le système nerveux de mes cibles. Cette attaque 
+                        sournoise ne se manifeste qu'après plusieurs minutes, moment où les victimes s'effondrent 
+                        soudainement, leur cerveau ravagé par une hémorragie interne massive. Parfait pour 
+                        l'assassinat discret ou pour affaiblir un groupe de pourfendeurs avant le combat principal.
+                    </p>
+                    <p style="margin-top: 10px; color: #aa6666;">
+                        <em>Délai d'activation : 3-10 minutes | Indétectable par les sens ordinaires</em>
+                    </p>
+                </div>
+
+                <div class="project-item" style="background: rgba(139, 0, 0, 0.25); border-left: 4px solid #ff3333;">
+                    <h3>Technique Ultime : Requiem du Chaos</h3>
+                    <p>
+                        Mon attaque la plus dévastatrice, utilisée seulement en situation désespérée. Je sacrifie 
+                        une quantité massive de mon sang pour créer une <span class="highlight">tempête sonique 
+                        démoniaque</span>. Un cri assourdissant se propage sur plusieurs kilomètres, pulvérisant 
+                        les structures, liquéfiant les organes, et rendant fous les survivants. Cette technique 
+                        peut éliminer des douzaines de pourfendeurs simultanément, mais me laisse temporairement 
+                        affaibli et nécessite plusieurs heures de repos.
+                    </p>
+                    <p style="margin-top: 10px; color: #aa6666;">
+                        <em>Rayon : 2 kilomètres | Temps de récupération : 6 heures | Utilisation limitée</em>
+                    </p>
+                </div>
+
+                <h4 style="color: #ff6666; margin-top: 35px; margin-bottom: 15px; font-size: 1.4em;">🛡️ Capacités Passives de Banshee</h4>
+
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #ff8888;">Perception Acoustique Suprême :</strong> Je peux détecter les 
+                    mouvements dans un rayon de 500 mètres grâce aux vibrations sonores. Aucun ennemi ne peut 
+                    m'approcher furtivement.
+                </p>
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #ff8888;">Immunité Sonique :</strong> Mes tympans se sont adaptés pour 
+                    résister à toutes fréquences sonores, me rendant immunisé contre les techniques basées sur le son.
+                </p>
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #ff8888;">Amplification par le Sang :</strong> Plus je consomme de sang 
+                    frais, plus mes techniques soniques deviennent puissantes et leur portée s'étend.
+                </p>
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #ff8888;">Communication Télépathique :</strong> Je peux utiliser des 
+                    fréquences spéciales pour communiquer discrètement avec d'autres démons dans un rayon de 1 kilomètre.
+                </p>
+
+                <h4 style="color: #ff6666; margin-top: 35px; margin-bottom: 15px; font-size: 1.4em;">⚡ Autres Compétences</h4>
+
+                <p>
+                    <strong>Régénération Avancée :</strong> Grâce à ma consommation stratégique d'humains 
+                    de qualité, ma capacité de régénération surpasse celle des démons ordinaires. 
+                    Je peux récupérer de blessures graves en quelques secondes.
+                </p>
+                <p>
+                    <strong>Sens Aiguisés :</strong> Ma perception du sang humain s'étend sur plusieurs 
+                    kilomètres. Je peux traquer mes proies avec une précision infaillible et détecter 
+                    les embuscades des pourfendeurs.
+                </p>
+                <p>
+                    <strong>Tactique et Stratégie :</strong> Contrairement aux démons impulsifs, j'analyse 
+                    chaque situation. Je sais quand attaquer, quand fuir, et comment maximiser mes chances 
+                    de victoire et de survie.
+                </p>
+                <p>
+                    <strong>Loyauté Absolue :</strong> Ma dévotion envers Muzan-sama et la cause démoniaque 
+                    est inébranlable. Je suivrai ses ordres sans hésitation, même face à la mort certaine.
+                </p>
+            </div>
+
+            <div id="engagement" class="tab-content">
+                <h2>🩸 Engagement Absolu</h2>
+                <p>
+                    Je jure sur l'obscurité éternelle que mon dévouement à Muzan-sama et aux Douze Lunes 
+                    Démoniaques sera <span class="highlight">total et sans faille</span>. Mon existence 
+                    entière sera dédiée à l'anéantissement des pourfendeurs et à la glorification de notre race.
+                </p>
+                <p>
+                    La mort ne me fait pas peur, car seuls les faibles tremblent devant l'inévitable. 
+                    Je vivrai dans la puissance ou périrai dans la gloire du combat. Chaque instant de mon 
+                    existence sera consacré à servir les ambitions de notre maître suprême.
+                </p>
+                <p>
+                    <strong>Mes serments :</strong>
+                </p>
+                <p>
+                    ⛧ Je ne trahirai jamais Muzan-sama, même sous la torture ou face à la destruction<br>
+                    ⛧ Je chasserai et éliminerai les pourfendeurs avec une efficacité impitoyable<br>
+                    ⛧ Je protégerai les secrets et les plans de notre organisation au péril de ma vie<br>
+                    ⛧ Je m'améliorerai constamment pour devenir plus fort et servir notre cause<br>
+                    ⛧ Je respecterai la hiérarchie et les ordres des Lunes supérieures
+                </p>
+                <p style="margin-top: 30px;">
+                    <strong>Accordez-moi cette position, et je deviendrai la terreur nocturne que même 
+                    les Hashira apprendront à redouter.</strong> Ma lame sera le jugement, mon sang sera 
+                    la sentence, et mon nom sera synonyme de mort pour quiconque ose s'opposer à notre règne.
+                </p>
+                <p style="text-align: center; margin-top: 40px; font-size: 1.3em; color: #ff6666;">
+                    <span class="flame">« Dans les ténèbres éternelles, je trouverai ma gloire »</span>
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>« Dans les ténèbres, nous trouvons notre véritable force »</p>
+            <p class="flame">☾ Lune Démoniaque Inférieure 五 ☾</p>
+        </footer>
+    </div>
+
+    <script>
+        // Génération de la pluie de sang
+        function createBloodRain() {
+            const rain = document.createElement('div');
+            rain.className = 'blood-rain';
+            rain.style.left = Math.random() * 100 + '%';
+            rain.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+            rain.style.animationDelay = Math.random() * 2 + 's';
+            rain.style.opacity = (Math.random() * 0.5 + 0.3);
+            document.body.appendChild(rain);
+
+            setTimeout(() => rain.remove(), 3000);
+        }
+
+        // Créer continuellement de la pluie de sang
+        setInterval(createBloodRain, 100);
+
+        // Effet d'éclair rouge sanguin aléatoire
+        function thunderEffect() {
+            const flash = document.getElementById('thunderFlash');
+            flash.style.opacity = '0.6';
+            setTimeout(() => {
+                flash.style.opacity = '0';
+            }, 100);
+            setTimeout(() => {
+                flash.style.opacity = '0.4';
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                }, 50);
+            }, 200);
+        }
+
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                thunderEffect();
+            }
+        }, 5000);
+
+        // Contrôle de la musique
+        const audioToggle = document.getElementById('audioToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        audioToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioToggle.textContent = '🔊 Musique';
+                audioToggle.style.background = 'rgba(139, 0, 0, 0.8)';
+            } else {
+                bgMusic.play();
+                audioToggle.textContent = '🔇 Pause';
+                audioToggle.style.background = 'rgba(139, 0, 0, 1)';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        audioToggle.addEventListener('mouseenter', () => {
+            audioToggle.style.transform = 'scale(1.1)';
+            audioToggle.style.boxShadow = '0 0 25px rgba(255, 68, 68, 0.8)';
+        });
+
+        audioToggle.addEventListener('mouseleave', () => {
+            audioToggle.style.transform = 'scale(1)';
+            audioToggle.style.boxShadow = '0 0 15px rgba(139, 0, 0, 0.5)';
+        });
+
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Animation de particules de sang flottantes (plus nombreuses et plus visibles)
+        function createBloodParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = Math.random() * 5 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = `rgba(${139 + Math.random() * 50}, 0, 0, ${Math.random() * 0.6 + 0.4})`;
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = '-10px';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1';
+            particle.style.boxShadow = '0 0 5px rgba(255, 0, 0, 0.5)';
+            document.body.appendChild(particle);
+
+            const duration = Math.random() * 2000 + 2000;
+            const drift = (Math.random() - 0.5) * 150;
+
+            particle.animate([
+                { transform: 'translateY(0px) translateX(0px)', opacity: 0.7 },
+                { transform: `translateY(${window.innerHeight}px) translateX(${drift}px)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            }).onfinish = () => particle.remove();
+        }
+
+        setInterval(createBloodParticle, 150);
+
+        // Effet de parallaxe subtil
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+            
+            document.querySelector('.content-container').style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+</body>
+</html>
