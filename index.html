@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinoto - Candidature Souffle de la Flamme</title>
+    <title>Hinoto - Candidature Souffle du Vent</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a0500 0%, #3d1400 50%, #0a0a0a 100%);
+            background: linear-gradient(135deg, #0a1420 0%, #1a2838 50%, #0f1a25 100%);
             color: #e0e0e0;
             font-family: 'Georgia', serif;
             overflow-x: hidden;
@@ -27,49 +27,50 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(100, 200, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(150, 230, 255, 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        .flame-glow {
+        .wind-glow {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             height: 150px;
-            background: linear-gradient(180deg, rgba(255, 140, 0, 0.4) 0%, rgba(255, 69, 0, 0.2) 30%, transparent 100%);
+            background: linear-gradient(180deg, rgba(100, 200, 255, 0.3) 0%, rgba(150, 230, 255, 0.15) 30%, transparent 100%);
             z-index: 1;
             pointer-events: none;
-            animation: flamePulse 3s infinite;
+            animation: windPulse 4s infinite;
         }
 
-        @keyframes flamePulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.9; }
+        @keyframes windPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
-        .ember {
+        .wind-particle {
             position: fixed;
-            width: 3px;
-            height: 3px;
-            background: radial-gradient(circle, #ff8c00, #ff4500);
-            border-radius: 50%;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(90deg, transparent, rgba(150, 230, 255, 0.6), transparent);
             pointer-events: none;
             z-index: 1;
-            animation: floatUp linear infinite;
-            opacity: 0.8;
-            box-shadow: 0 0 5px #ff6347;
+            animation: windFlow linear infinite;
+            opacity: 0.7;
         }
 
-        @keyframes floatUp {
+        @keyframes windFlow {
             0% {
-                transform: translateY(0) translateX(0);
+                transform: translateX(-100px) translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) translateX(var(--drift));
+                transform: translateX(100vw) translateY(var(--drift)) rotate(45deg);
                 opacity: 0;
             }
         }
@@ -88,30 +89,30 @@
             position: relative;
         }
 
-        .flame-symbol {
+        .wind-symbol {
             font-size: 120px;
-            background: linear-gradient(45deg, #ff8c00, #ff4500, #ffd700);
+            background: linear-gradient(45deg, #64c8ff, #96e6ff, #c8f0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 
-                0 0 30px rgba(255, 140, 0, 0.9), 
-                0 0 60px rgba(255, 69, 0, 0.6);
-            animation: flameFlicker 2s infinite, float 4s ease-in-out infinite;
+                0 0 30px rgba(100, 200, 255, 0.9), 
+                0 0 60px rgba(150, 230, 255, 0.6);
+            animation: windSway 3s infinite, float 4s ease-in-out infinite;
             margin-bottom: 20px;
         }
 
-        @keyframes flameFlicker {
+        @keyframes windSway {
             0%, 100% { 
-                transform: scale(1) rotate(-5deg);
+                transform: scale(1) rotate(-3deg);
                 filter: brightness(1);
             }
             25% {
-                transform: scale(1.05) rotate(2deg);
+                transform: scale(1.03) rotate(2deg);
             }
             50% { 
-                transform: scale(1.1) rotate(-3deg);
-                filter: brightness(1.3) drop-shadow(0 0 30px rgba(255, 140, 0, 0.8));
+                transform: scale(1.08) rotate(-2deg);
+                filter: brightness(1.3) drop-shadow(0 0 30px rgba(100, 200, 255, 0.8));
             }
             75% {
                 transform: scale(1.03) rotate(1deg);
@@ -125,13 +126,10 @@
 
         h1 {
             font-size: 3em;
-            background: linear-gradient(90deg, #ff8c00, #ffd700);
+            background: linear-gradient(90deg, #64c8ff, #c8f0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 
-                0 0 20px rgba(255, 140, 0, 0.8),
-                0 0 40px rgba(255, 140, 0, 0.6);
             margin-bottom: 10px;
             letter-spacing: 3px;
             animation: titleGlow 3s infinite;
@@ -139,16 +137,16 @@
 
         @keyframes titleGlow {
             0%, 100% { 
-                filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.8));
+                filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.8));
             }
             50% { 
-                filter: drop-shadow(0 0 40px rgba(255, 140, 0, 1));
+                filter: drop-shadow(0 0 40px rgba(100, 200, 255, 1));
             }
         }
 
         .subtitle {
             font-size: 1.3em;
-            color: #ffaa55;
+            color: #96e6ff;
             font-style: italic;
             margin-bottom: 40px;
         }
@@ -162,39 +160,39 @@
         }
 
         .tab {
-            background: rgba(50, 20, 0, 0.6);
-            border: 2px solid #ff8c00;
+            background: rgba(20, 40, 60, 0.6);
+            border: 2px solid #64c8ff;
             padding: 15px 30px;
             cursor: pointer;
             transition: all 0.3s;
-            color: #ffaa55;
+            color: #96e6ff;
             font-size: 1.1em;
             border-radius: 10px 10px 0 0;
             position: relative;
         }
 
         .tab:hover {
-            background: rgba(255, 140, 0, 0.3);
+            background: rgba(100, 200, 255, 0.3);
             transform: translateY(-3px);
-            color: #ffd700;
-            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.5);
+            color: #c8f0ff;
+            box-shadow: 0 5px 15px rgba(100, 200, 255, 0.5);
         }
 
         .tab.active {
-            background: rgba(255, 140, 0, 0.5);
-            border-bottom: 2px solid #ffd700;
-            color: #ffd700;
-            box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+            background: rgba(100, 200, 255, 0.4);
+            border-bottom: 2px solid #c8f0ff;
+            color: #c8f0ff;
+            box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
         }
 
         .content-container {
-            background: rgba(30, 10, 0, 0.85);
-            border: 2px solid #ff8c00;
+            background: rgba(15, 30, 45, 0.85);
+            border: 2px solid #64c8ff;
             border-radius: 15px;
             padding: 40px;
             box-shadow: 
-                0 0 30px rgba(255, 140, 0, 0.5),
-                inset 0 0 50px rgba(255, 140, 0, 0.1);
+                0 0 30px rgba(100, 200, 255, 0.5),
+                inset 0 0 50px rgba(100, 200, 255, 0.1);
             min-height: 500px;
             position: relative;
         }
@@ -214,23 +212,23 @@
         }
 
         h2 {
-            color: #ff8c00;
+            color: #64c8ff;
             font-size: 2.2em;
             margin-bottom: 25px;
-            border-bottom: 2px solid #ff8c00;
+            border-bottom: 2px solid #64c8ff;
             padding-bottom: 15px;
-            text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
         }
 
         h3 {
-            color: #ffaa55;
+            color: #96e6ff;
             margin-top: 30px;
             margin-bottom: 15px;
             font-size: 1.5em;
         }
 
         h4 {
-            color: #ff8c00;
+            color: #64c8ff;
             margin-top: 30px;
             margin-bottom: 15px;
             font-size: 1.4em;
@@ -243,27 +241,27 @@
         }
 
         .highlight {
-            color: #ffd700;
+            color: #c8f0ff;
             font-weight: bold;
         }
 
         .section-item {
-            background: rgba(255, 140, 0, 0.15);
+            background: rgba(100, 200, 255, 0.12);
             padding: 20px;
             margin: 15px 0;
-            border-left: 4px solid #ff8c00;
+            border-left: 4px solid #64c8ff;
             border-radius: 5px;
             transition: all 0.3s;
         }
 
         .section-item:hover {
-            background: rgba(255, 140, 0, 0.25);
+            background: rgba(100, 200, 255, 0.2);
             transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(100, 200, 255, 0.3);
         }
 
         .section-item h3 {
-            color: #ffd700;
+            color: #c8f0ff;
             margin-bottom: 10px;
             font-size: 1.4em;
             margin-top: 0;
@@ -272,53 +270,53 @@
         footer {
             text-align: center;
             padding: 40px;
-            color: #ffaa55;
+            color: #96e6ff;
             font-style: italic;
             margin-top: 40px;
         }
 
         .stat-box {
             display: inline-block;
-            background: rgba(255, 140, 0, 0.2);
+            background: rgba(100, 200, 255, 0.15);
             padding: 15px 25px;
             margin: 10px;
-            border: 2px solid #ff8c00;
+            border: 2px solid #64c8ff;
             border-radius: 10px;
         }
 
         .stat-label {
-            color: #ffaa55;
+            color: #96e6ff;
             font-size: 0.9em;
             margin-bottom: 5px;
         }
 
         .stat-value {
-            color: #ffd700;
+            color: #c8f0ff;
             font-size: 1.5em;
             font-weight: bold;
         }
 
         .wiki-section {
-            background: rgba(50, 20, 0, 0.4);
-            border: 2px solid #ff8c00;
+            background: rgba(30, 50, 70, 0.4);
+            border: 2px solid #64c8ff;
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 25px;
         }
 
         .wiki-title {
-            background: linear-gradient(90deg, rgba(255, 140, 0, 0.5) 0%, transparent 100%);
+            background: linear-gradient(90deg, rgba(100, 200, 255, 0.4) 0%, transparent 100%);
             padding: 12px 15px;
             margin-bottom: 15px;
             font-size: 1.3em;
-            color: #ffd700;
-            border-left: 4px solid #ff8c00;
+            color: #c8f0ff;
+            border-left: 4px solid #64c8ff;
         }
 
         .wiki-row {
             display: flex;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
         }
 
         .wiki-row:last-child {
@@ -328,7 +326,7 @@
         .wiki-label {
             flex: 0 0 200px;
             font-weight: bold;
-            color: #ffaa55;
+            color: #96e6ff;
         }
 
         .wiki-value {
@@ -340,14 +338,14 @@
             color: #e0e0e0;
         }
 
-        .wiki-value.gold {
-            color: #ffd700;
+        .wiki-value.cyan {
+            color: #c8f0ff;
         }
 
         .character-banner {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, rgba(255, 140, 0, 0.3) 0%, rgba(255, 69, 0, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(100, 200, 255, 0.25) 0%, rgba(150, 230, 255, 0.3) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -358,7 +356,7 @@
         }
 
         .character-banner::before {
-            content: '🔥';
+            content: '💨';
             font-size: 200px;
             opacity: 0.2;
             position: absolute;
@@ -373,14 +371,14 @@
         .character-icon {
             font-size: 80px;
             margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.8));
+            filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8));
         }
 
         .character-rank {
-            color: #ffd700;
+            color: #c8f0ff;
             font-size: 1.3em;
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 10px rgba(200, 240, 255, 0.5);
         }
 
         .stats-container {
@@ -391,35 +389,35 @@
         }
 
         .wiki-stat-box {
-            background: rgba(255, 140, 0, 0.2);
+            background: rgba(100, 200, 255, 0.15);
             padding: 15px;
-            border-left: 3px solid #ff8c00;
+            border-left: 3px solid #64c8ff;
             border-radius: 5px;
             text-align: center;
         }
 
         .wiki-stat-label {
-            color: #ffaa55;
+            color: #96e6ff;
             font-size: 0.9em;
             margin-bottom: 8px;
         }
 
         .wiki-stat-value {
-            color: #ffd700;
+            color: #c8f0ff;
             font-size: 1.4em;
             font-weight: bold;
         }
 
         .technique-box {
-            background: rgba(255, 140, 0, 0.15);
+            background: rgba(100, 200, 255, 0.12);
             padding: 15px;
             margin-bottom: 12px;
-            border-left: 3px solid #ff8c00;
+            border-left: 3px solid #64c8ff;
             border-radius: 5px;
         }
 
         .technique-title {
-            color: #ffd700;
+            color: #c8f0ff;
             font-weight: bold;
             margin-bottom: 8px;
             font-size: 1.1em;
@@ -447,216 +445,182 @@
     </style>
 </head>
 <body>
-    <div class="flame-glow"></div>
+    <div class="wind-glow"></div>
     
     <div class="container">
         <header>
-            <div class="flame-symbol">🔥</div>
+            <div class="wind-symbol">💨</div>
             <h1>CANDIDATURE</h1>
-            <div class="subtitle">Kinoto - Souffle de la Flamme</div>
+            <div class="subtitle">Hinoto - Souffle du Vent</div>
         </header>
 
         <div class="tabs-container">
-            <div class="tab active" onclick="openTab('histoire')">🔥 Histoire</div>
-            <div class="tab" onclick="openTab('motivations')">🔥 Motivations</div>
-            <div class="tab" onclick="openTab('objectifs')">🔥 Objectifs</div>
-            <div class="tab" onclick="openTab('competences')">🔥 Compétences</div>
-            <div class="tab" onclick="openTab('engagement')">🔥 Engagement</div>
+            <div class="tab active" onclick="openTab('histoire')">💨 Histoire</div>
+            <div class="tab" onclick="openTab('motivations')">💨 Motivations</div>
+            <div class="tab" onclick="openTab('objectifs')">💨 Objectifs</div>
+            <div class="tab" onclick="openTab('competences')">💨 Compétences</div>
+            <div class="tab" onclick="openTab('engagement')">💨 Engagement</div>
             <div class="tab" onclick="openTab('hrp')">👤 HRP</div>
             <div class="tab" onclick="openTab('fiche')">📋 Fiche</div>
         </div>
 
         <div class="content-container">
             <div id="histoire" class="tab-content active">
-                <h2>🔥 Histoire du Pourfendeur</h2>
+                <h2>💨 Histoire du Pourfendeur</h2>
                 
-                <h3>Les Origines - L'Étincelle de la Détermination</h3>
+                <h3>Les Origines - Le Vent de la Vengeance</h3>
                 <p>
-                    Mon histoire commence dans un village paisible au pied du Mont Fuji, où ma famille gérait 
-                    une modeste forge depuis des générations. Dès mon plus jeune âge, j'ai été fasciné par le 
-                    feu - sa chaleur, sa puissance, sa capacité à <span class="highlight">purifier et transformer</span>. 
-                    Mon père, forgeron talentueux, m'enseignait que le feu n'est pas destructeur par nature, 
-                    mais un outil de création et de protection.
+                    Mon histoire débute dans les montagnes escarpées du Nord, où mon clan vivait en harmonie 
+                    avec la nature depuis des générations. Les Kurozatsu étaient connus comme des gardiens des 
+                    passages montagneux, protégeant les villages des avalanches et des tempêtes. Dès mon plus 
+                    jeune âge, j'ai appris à <span class="highlight">lire les vents et comprendre leur langage</span>.
                 </p>
                 <p>
-                    Cette vision idyllique s'est effondrée une nuit d'hiver, lorsque j'avais quinze ans. 
-                    Un démon attaqua notre village, massacrant sans pitié les habitants. Ma famille périt 
-                    dans l'incendie qu'il provoqua. Ironiquement, <span class="highlight">les flammes qui 
-                    dévoraient ma maison m'ont sauvé</span> - le démon, affaibli par le feu, dut fuir avant 
-                    de m'atteindre.
+                    Cette paix fut brisée lors de mes seize ans, quand une horde de démons attaqua notre village 
+                    pendant une nuit de tempête. Ils utilisèrent le vent hurlant pour masquer leurs approches. 
+                    Ma famille périt en tentant de protéger les villageois. <span class="highlight">Ce soir-là, 
+                    le vent qui m'avait toujours bercé devint le témoin de ma rage</span>.
                 </p>
                 <p>
-                    Ce soir-là, alors que je contemplais les cendres de mon ancienne vie, j'ai fait un serment : 
-                    je maîtriserais le feu non pas pour forger des outils, mais pour <span class="highlight">
-                    protéger les innocents et purifier le monde des démons</span>. Le lendemain, j'entrepris 
-                    de rejoindre le Corps des Pourfendeurs de Démons.
+                    Seul survivant, j'ai juré sur les cendres de mon clan : je maîtriserais le vent non plus 
+                    pour l'écouter, mais pour <span class="highlight">en faire une lame tranchante contre 
+                    les démons</span>. Le lendemain, malgré mes blessures, j'entrepris de rejoindre le 
+                    Corps des Pourfendeurs.
                 </p>
 
-                <h3>La Formation - Embrasser la Flamme</h3>
+                <h3>La Formation - Chevaucher la Tempête</h3>
                 <p>
-                    Mon voyage jusqu'à la Sélection Finale fut ardu. Durant deux années, j'ai erré, cherchant 
-                    désespérément un maître qui pourrait m'enseigner l'art du combat. Ma détermination finit 
-                    par attirer l'attention d'un ancien utilisateur du <span class="highlight">Souffle de la Flamme</span>, 
-                    un vétéran retraité qui avait survécu à d'innombrables batailles.
+                    Mon voyage fut un calvaire. Blessé et hanté par les souvenirs, je faillis abandonner 
+                    plusieurs fois. Ma détermination attira finalement l'attention d'un maître du 
+                    <span class="highlight">Souffle du Vent</span>, un pourfendeur sévère qui avait perdu 
+                    son propre clan de manière similaire.
                 </p>
                 <p>
-                    L'entraînement fut brutal. Chaque jour, de l'aube au crépuscule, je perfectionnais ma 
-                    respiration, mon maniement du sabre, ma condition physique. Mon maître me répétait sans 
-                    cesse : <em>"La flamme ne faiblit jamais, elle brûle avec constance jusqu'à consumer 
-                    tout combustible. Tel doit être ton cœur."</em>
+                    L'entraînement fut impitoyable. Chaque aube, je m'entraînais au sommet des falaises 
+                    battues par le vent, apprenant à transformer chaque bourrasque en force. Mon maître 
+                    me répétait : <em>"Le vent est libre et sauvage. Pour le maîtriser, tu dois devenir 
+                    aussi imprévisible et implacable qu'une tempête."</em>
                 </p>
                 <p>
-                    Après dix-huit mois d'entraînement intensif, j'étais enfin prêt pour la Sélection Finale. 
-                    Les sept jours et nuits sur le Mont Fujikasane furent un cauchemar vivant. J'ai combattu 
-                    des démons plus forts et plus rusés que tout ce que j'avais imaginé. Mais <span class="highlight">
-                    la flamme en moi ne s'est jamais éteinte</span>. J'ai survécu, et j'ai gagné le droit de 
-                    devenir un Pourfendeur.
+                    Après deux années d'entraînement brutal, j'affrontai la Sélection Finale. Les démons 
+                    du Mont Fujikasane apprirent à craindre les lames du vent. <span class="highlight">
+                    Telle une tempête déchaînée, je survécus là où d'autres périrent</span>.
                 </p>
 
-                <h3>Premières Missions - Forger mon Expérience</h3>
+                <h3>Ascension - De Mizunoto à Kanoe</h3>
                 <p>
-                    Mes débuts en tant que Mizunoto furent humbles mais éducatifs. Chaque mission était une 
-                    leçon, chaque démon éliminé une confirmation que j'avais fait le bon choix. Je me suis 
-                    rapidement distingué par ma <span class="highlight">détermination inébranlable et ma 
-                    maîtrise croissante du Souffle de la Flamme</span>.
+                    Mes débuts furent marqués par une rage à peine contenue. Chaque démon éliminé était 
+                    une petite vengeance pour mon clan. Mais progressivement, j'ai appris à <span class="highlight">
+                    canaliser ma colère en détermination froide</span>.
                 </p>
                 <p>
-                    Au fil des mois, j'ai gravi les échelons : Mizunoto, Mizunoe, Kanoto, Kanoe. Chaque 
-                    promotion était méritée par le sang, la sueur et les sacrifices. J'ai sauvé des dizaines 
-                    de villages, éliminé d'innombrables démons, et porté secours à mes camarades pourfendeurs 
-                    en difficulté.
+                    J'ai gravi les échelons rapidement : Mizunoto, Mizunoe, Kanoto, Kanoe. Chaque promotion 
+                    gagnée dans le sang et le combat. J'ai développé un style unique, combinant la férocité 
+                    du Souffle du Vent avec une précision chirurgicale.
                 </p>
                 <p>
-                    Une mission particulièrement marquante m'opposa à un démon qui maîtrisait l'eau glacée. 
-                    Notre combat dura toute une nuit, nos éléments s'entrechoquant dans un spectacle de 
-                    vapeur et de feu. <span class="highlight">Ma victoire ce soir-là prouva que ma flamme 
-                    ne pouvait être éteinte</span>, même par les forces les plus opposées.
+                    Une mission décisive m'opposa à un démon qui contrôlait les flammes. Notre affrontement 
+                    ravagea une forêt entière. <span class="highlight">Le vent attisa ses flammes jusqu'à ce 
+                    qu'elles le consument lui-même</span>. Cette victoire me valut reconnaissance et respect.
                 </p>
 
-                <h3>Le Présent - Viser Plus Haut</h3>
+                <h3>Le Présent - Viser le Rang de Hinoto</h3>
                 <p>
-                    Aujourd'hui, en tant que Kanoe, je me trouve à un tournant crucial de ma carrière. 
-                    J'ai acquis une expérience substantielle, perfectionné mes techniques, et développé 
-                    une compréhension profonde du combat contre les démons. Le rang de <span class="highlight">
-                    Kinoto</span> n'est pas simplement une promotion - c'est une reconnaissance de mon 
-                    dévouement et une responsabilité accrue.
+                    Aujourd'hui, en tant que Kanoe, je suis à un carrefour. J'ai l'expérience, la technique 
+                    et la détermination. Le rang de <span class="highlight">Hinoto</span> n'est pas qu'une 
+                    promotion - c'est la reconnaissance que je suis devenu une lame digne de mon clan disparu.
                 </p>
                 <p>
-                    Je sais que le chemin vers les rangs supérieurs sera semé d'embûches encore plus 
-                    redoutables. Des démons plus puissants, des situations plus désespérées, des décisions 
-                    plus difficiles. Mais comme la flamme qui grandit face au vent, <span class="highlight">
-                    je m'épanouis face à l'adversité</span>.
-                </p>
-                <p>
-                    Mon objectif ultime reste clair : protéger les innocents, éradiquer la menace 
-                    démoniaque, et un jour, peut-être, rejoindre les rangs des Hashira. Mais pour 
-                    l'instant, mon ambition immédiate est de prouver que je mérite le rang de Kinoto 
-                    et d'utiliser cette position pour faire une différence encore plus grande dans 
-                    notre guerre contre les ténèbres.
+                    Je ne cherche plus seulement la vengeance. J'ai compris que <span class="highlight">
+                    protéger les vivants honore mieux les morts</span>. Mon objectif est clair : devenir 
+                    assez fort pour qu'aucune famille ne subisse ce que j'ai vécu.
                 </p>
             </div>
 
             <div id="motivations" class="tab-content">
-                <h2>🔥 Motivations Profondes</h2>
+                <h2>💨 Motivations Profondes</h2>
                 <p>
-                    Pourquoi aspirer au rang de <span class="highlight">Kinoto</span> ? Cette question 
-                    mérite une réponse réfléchie et sincère.
+                    Pourquoi aspirer au rang de <span class="highlight">Hinoto</span> ? Cette question 
+                    mérite une réponse honnête.
                 </p>
                 <p>
-                    <strong>Protéger les Innocents</strong> : Chaque rang supérieur signifie des missions 
-                    plus dangereuses et plus importantes. En tant que Kinoto, j'aurai l'opportunité de 
-                    faire face à des menaces plus sérieuses et de <span class="highlight">sauver encore 
-                    plus de vies</span>. C'est mon devoir et mon honneur.
+                    <strong>Honorer mon Clan</strong> : Les Kurozatsu étaient des protecteurs. En devenant 
+                    Hinoto, je continue leur héritage. Chaque vie sauvée est un hommage à <span class="highlight">
+                    ceux qui ne peuvent plus se battre</span>.
                 </p>
                 <p>
-                    <strong>Honorer les Disparus</strong> : Ma famille, mon maître, et tous les camarades 
-                    tombés au combat méritent que je devienne le meilleur pourfendeur possible. Chaque 
-                    démon que j'élimine, chaque vie que je sauve est un hommage à leur mémoire.
+                    <strong>Perfectionner ma Maîtrise</strong> : Le Souffle du Vent est impitoyable et libre. 
+                    Un rang supérieur signifie des défis plus grands, des démons plus forts. C'est dans 
+                    l'adversité que <span class="highlight">le vent devient tempête</span>.
                 </p>
                 <p>
-                    <strong>Inspirer la Nouvelle Génération</strong> : En tant que Kinoto, je pourrai 
-                    guider et mentorer les pourfendeurs débutants. Je veux leur transmettre la même 
-                    détermination et la même passion que mon maître m'a enseignées. <span class="highlight">
-                    La flamme doit être transmise aux générations futures</span>.
+                    <strong>Protéger les Vulnérables</strong> : Trop de villages isolés tombent proie aux 
+                    démons. En tant que Hinoto, j'aurai les moyens et l'autorité pour organiser leur défense.
                 </p>
                 <p>
-                    <strong>Poursuivre la Perfection</strong> : Le Souffle de la Flamme n'est pas 
-                    simplement une technique de combat - c'est une philosophie de vie. Chaque jour, 
-                    je cherche à perfectionner mes formes, à comprendre plus profondément la nature 
-                    du feu et du combat. Le rang de Kinoto me permettra d'affronter des défis qui 
-                    me pousseront à transcender mes limites actuelles.
+                    <strong>Prouver ma Valeur</strong> : Je ne veux pas être connu comme "le survivant". 
+                    Je veux être reconnu comme <span class="highlight">Shinjiro Kurozatsu, lame du vent, 
+                    fléau des démons</span>.
                 </p>
             </div>
 
             <div id="objectifs" class="tab-content">
                 <h2>🎯 Objectifs & Ambitions</h2>
 
-                <h3 style="color: #ff8c00; margin-top: 30px;">Objectifs Court Terme (1-3 mois)</h3>
+                <h3 style="color: #64c8ff; margin-top: 30px;">Objectifs Court Terme (1-3 mois)</h3>
 
                 <div class="section-item">
-                    <h3>🛡️ Missions de Protection</h3>
+                    <h3>⚔️ Missions à Haut Risque</h3>
                     <p>
-                        Accepter et réussir des missions de protection dans des zones à haut risque. 
-                        Mon objectif est de <span class="highlight">sauver au moins 100 civils</span> 
-                        et d'éliminer tous les démons qui menacent les villages sous ma surveillance.
+                        Accepter les missions dans les zones montagneuses où les démons prolifèrent. 
+                        Mon objectif : <span class="highlight">éliminer 20 démons minimum</span> et 
+                        sécuriser les routes commerciales.
                     </p>
                 </div>
 
                 <div class="section-item">
-                    <h3>⚔️ Perfectionner les Formes</h3>
+                    <h3>💨 Maîtrise Avancée</h3>
                     <p>
-                        Maîtriser parfaitement les cinq formes du Souffle de la Flamme que j'ai apprises, 
-                        réduisant le temps d'exécution et augmentant la puissance de chaque technique. 
-                        Commencer à développer ma propre variation personnelle.
+                        Perfectionner les huit formes du Souffle du Vent et commencer à développer 
+                        ma propre technique signature basée sur les tornades.
                     </p>
                 </div>
 
                 <div class="section-item">
-                    <h3>🤝 Collaboration d'Équipe</h3>
+                    <h3>🤝 Leadership Tactique</h3>
                     <p>
-                        Participer à des missions d'équipe avec d'autres Kinoe et Kinoto, apprenant 
-                        à coordonner mes techniques avec différents Souffles et styles de combat.
+                        Diriger des équipes de pourfendeurs juniors, leur enseignant la stratégie 
+                        et la coordination lors de missions de groupe.
                     </p>
                 </div>
 
-                <h3 style="color: #ff8c00; margin-top: 35px;">Objectifs Moyen Terme (6-12 mois)</h3>
+                <h3 style="color: #64c8ff; margin-top: 35px;">Objectifs Moyen Terme (6-12 mois)</h3>
 
                 <div class="section-item">
-                    <h3>📈 Progression vers Hinoto</h3>
+                    <h3>📈 Progression vers Hinoe</h3>
                     <p>
-                        Prouver ma valeur constante en tant que Kinoto et aspirer à la promotion 
-                        vers Hinoto. Cela nécessitera l'élimination de démons plus puissants et 
-                        la réussite de missions critiques.
-                    </p>
-                </div>
-
-                <div class="section-item">
-                    <h3>👨‍🏫 Mentorat</h3>
-                    <p>
-                        Commencer à guider les nouveaux pourfendeurs, partageant mon expérience 
-                        et mes techniques. Former au moins 2-3 élèves prometteurs.
+                        Après avoir prouvé ma valeur en tant que Hinoto, viser le rang de Hinoe 
+                        par l'élimination de démons particulièrement dangereux.
                     </p>
                 </div>
 
                 <div class="section-item">
-                    <h3>🗡️ Affronter une Lune Démoniaque</h3>
+                    <h3>🗻 Sécuriser les Montagnes</h3>
                     <p>
-                        Si l'opportunité se présente, participer à une mission contre une Lune 
-                        Démoniaque Inférieure aux côtés de pourfendeurs plus expérimentés. 
-                        Survivre et apprendre de cette expérience.
+                        Établir un réseau de défense dans les régions montagneuses, créant des 
+                        zones sûres pour les voyageurs et les villages isolés.
                     </p>
                 </div>
 
-                <h3 style="color: #ff8c00; margin-top: 35px;">Objectif Ultime</h3>
+                <h3 style="color: #64c8ff; margin-top: 35px;">Objectif Ultime</h3>
 
-                <div class="section-item" style="background: rgba(255, 140, 0, 0.25);">
-                    <h3>🌟 Devenir Hashira de la Flamme</h3>
+                <div class="section-item" style="background: rgba(100, 200, 255, 0.2);">
+                    <h3>🌪️ Devenir Hashira du Vent</h3>
                     <p>
-                        Mon rêve ultime est de rejoindre les rangs des Hashira, les neuf piliers 
-                        du Corps des Pourfendeurs. Je sais que ce chemin est long et périlleux, 
-                        nécessitant des décennies de dévouement et d'exploits extraordinaires. 
-                        Mais <span class="highlight">comme une flamme qui ne s'éteint jamais, 
-                        ma détermination brûlera éternellement</span> jusqu'à atteindre ce sommet.
+                        Mon rêve ultime est de rejoindre les rangs des Hashira. Non pour la gloire, 
+                        mais pour avoir le pouvoir de <span class="highlight">protéger à l'échelle 
+                        du Japon entier</span>. Comme une tempête qui balaie tout sur son passage, 
+                        je deviendrai un mur infranchissable contre les démons.
                     </p>
                 </div>
             </div>
@@ -671,7 +635,7 @@
                     </div>
                     <div class="stat-box">
                         <div class="stat-label">Vitesse</div>
-                        <div class="stat-value">★★★★☆</div>
+                        <div class="stat-value">★★★★★</div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-label">Technique</div>
@@ -679,309 +643,217 @@
                     </div>
                 </div>
 
-                <h3 style="color: #ff8c00; margin-top: 40px; text-align: center; font-size: 1.8em;">
-                    🔥 SOUFFLE DE LA FLAMME 🔥
+                <h3 style="color: #64c8ff; margin-top: 40px; text-align: center; font-size: 1.8em;">
+                    💨 SOUFFLE DU VENT 💨
                 </h3>
 
-                <div style="background: rgba(255, 140, 0, 0.2); padding: 25px; border: 3px solid #ff8c00; border-radius: 10px; margin: 20px 0;">
+                <div style="background: rgba(100, 200, 255, 0.15); padding: 25px; border: 3px solid #64c8ff; border-radius: 10px; margin: 20px 0;">
                     <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong>Origine :</strong> Style de combat transmis de génération en génération 
-                        au sein du Corps des Pourfendeurs. Le Souffle de la Flamme incarne <span class="highlight">
-                        la passion, la détermination et la protection</span>. Chaque technique représente 
-                        une manifestation différente de la puissance du feu.
+                        <strong>Origine :</strong> Style de combat basé sur la liberté et la férocité du vent. 
+                        Le Souffle du Vent incarne <span class="highlight">la vitesse imprévisible et la 
+                        puissance dévastatrice des tempêtes</span>. Chaque frappe lacère comme une bourrasque tranchante.
                     </p>
                 </div>
 
-                <h4>🔥 Formes Maîtrisées</h4>
+                <h4>💨 Formes Maîtrisées</h4>
 
                 <div class="technique-box">
-                    <div class="technique-title">Première Forme : Mer de Feu (Shiranui)</div>
+                    <div class="technique-title">Première Forme : Poussière de Lames (Jinchū Ichimonji)</div>
                     <div class="technique-description">
-                        L'utilisateur charge vers l'avant avec une vitesse explosive et délivre une frappe 
-                        horizontale dévastatrice enveloppée de flammes. Cette technique est idéale pour 
-                        <span class="highlight">décapiter rapidement les démons</span> et créer une barrière 
-                        de feu protégeant les civils derrière moi.
+                        Une attaque horizontale dévastatrice génère une tornade de lames invisibles. 
+                        Parfaite pour <span class="highlight">lacérer plusieurs ennemis simultanément</span> 
+                        dans un rayon de 10 mètres.
                     </div>
                 </div>
 
                 <div class="technique-box">
-                    <div class="technique-title">Deuxième Forme : Ciel Ascendant (Nobori En Ten)</div>
+                    <div class="technique-title">Deuxième Forme : Griffes Tourbillonnantes (Sōma no Tsume)</div>
                     <div class="technique-description">
-                        Une frappe verticale ascendante circulaire créant un tourbillon de flammes. Parfaite 
-                        pour repousser plusieurs ennemis simultanément ou pour contrer les attaques aériennes. 
-                        La chaleur générée peut aussi <span class="highlight">purifier les poisons démoniaques</span> 
-                        dans un rayon limité.
+                        Quatre frappes diagonales descendantes créent des lames de vent qui <span class="highlight">
+                        percent les défenses démoniaques</span> comme du papier.
                     </div>
                 </div>
 
                 <div class="technique-box">
-                    <div class="technique-title">Troisième Forme : Univers de Flammes (Enbu)</div>
+                    <div class="technique-title">Troisième Forme : Vent Pur Arashi</div>
                     <div class="technique-description">
-                        Une série de frappes circulaires offensives et défensives créant un dôme de flammes 
-                        protecteur. Cette technique me permet de défendre une zone tout en maintenant la pression 
-                        offensive. Extrêmement utile lorsque je protège des civils ou des camarades blessés.
+                        Une tornade défensive qui repousse les attaques tout en lacérant les assaillants 
+                        proches. Idéale pour protéger des alliés blessés.
                     </div>
                 </div>
 
                 <div class="technique-box">
-                    <div class="technique-title">Quatrième Forme : Vague Flamboyante (Seiun)</div>
+                    <div class="technique-title">Quatrième Forme : Typhon Ascendant (Shōbushū)</div>
                     <div class="technique-description">
-                        Une frappe ondulante puissante qui génère une vague de flammes déferlantes. Cette 
-                        technique combine puissance et fluidité, permettant d'<span class="highlight">adapter 
-                        l'angle d'attaque en plein mouvement</span> pour contrer les démons agiles.
+                        Multiples frappes ascendantes créant un vortex destructeur. Cette technique 
+                        peut <span class="highlight">déchiqueter un démon en morceaux</span> en quelques secondes.
                     </div>
                 </div>
 
                 <div class="technique-box">
-                    <div class="technique-title">Cinquième Forme : Tigre de Flammes (Katen)</div>
+                    <div class="technique-title">Cinquième Forme : Froid Rafale de Montagne (Kogarashi)</div>
                     <div class="technique-description">
-                        Une série de frappes explosives et puissantes délivrées en succession rapide, 
-                        chacune générant une onde de chaleur intense. Ma technique la plus dévastatrice, 
-                        capable de <span class="highlight">pulvériser les défenses démoniaques</span> les 
-                        plus robustes. Nécessite une concentration et une endurance exceptionnelles.
+                        Combinaison de frappes rapides et imprévisibles imitant les vents changeants 
+                        des montagnes. Impossible à anticiper ou à bloquer.
                     </div>
                 </div>
 
-                <h4 style="margin-top: 35px;">🛡️ Capacités Complémentaires</h4>
+                <h4 style="margin-top: 35px;">🌪️ Capacités Spéciales</h4>
 
                 <p style="margin-bottom: 12px;">
-                    <strong style="color: #ffaa55;">Respiration Totale Constante :</strong> J'ai développé 
-                    la capacité de maintenir ma respiration optimale même pendant un sommeil léger, 
-                    accélérant ma récupération entre les missions et me permettant de rester vigilant.
+                    <strong style="color: #96e6ff;">Sens du Vent :</strong> Capacité innée à détecter 
+                    les mouvements ennemis par les perturbations dans l'air. Efficace même dans l'obscurité 
+                    totale.
                 </p>
 
                 <p style="margin-bottom: 12px;">
-                    <strong style="color: #ffaa55;">Résistance au Feu :</strong> Des années d'entraînement 
-                    avec le Souffle de la Flamme ont renforcé ma résistance à la chaleur extrême. Je peux 
-                    combattre dans des environnements enflammés sans être handicapé.
+                    <strong style="color: #96e6ff;">Mobilité Extrême :</strong> Ma maîtrise du Souffle 
+                    du Vent me confère une vitesse et une agilité exceptionnelles, me permettant de 
+                    combattre sur terrains difficiles.
                 </p>
 
                 <p style="margin-bottom: 12px;">
-                    <strong style="color: #ffaa55;">Perception des Intentions :</strong> Grâce à mon 
-                    entraînement intensif, j'ai développé une intuition aiguisée me permettant d'anticiper 
-                    les mouvements ennemis en observant de subtils changements dans leur posture et respiration.
+                    <strong style="color: #96e6ff;">Respiration en Haute Altitude :</strong> Entraîné 
+                    dans les montagnes, je peux maintenir ma performance même en air raréfié.
                 </p>
 
                 <p style="margin-bottom: 12px;">
-                    <strong style="color: #ffaa55;">Endurance Exceptionnelle :</strong> Ma constitution 
-                    physique renforcée me permet de combattre pendant des heures sans faillir, une qualité 
-                    essentielle lors de missions prolongées ou face à des ennemis coriaces.
-                </p>
-
-                <h4 style="margin-top: 35px;">⚡ Compétences Tactiques</h4>
-
-                <p>
-                    <strong>Commandement de Terrain :</strong> Expérience dans la coordination de petites 
-                    équipes lors de missions de groupe. Je sais évaluer rapidement les forces et faiblesses 
-                    de mes camarades pour optimiser notre formation.
-                </p>
-
-                <p>
-                    <strong>Analyse Démoniaque :</strong> Après des dizaines de combats, j'ai développé 
-                    une compréhension approfondie des comportements démoniaques, de leurs points faibles 
-                    communs, et des stratégies les plus efficaces selon le type de démon.
-                </p>
-
-                <p>
-                    <strong>Protection Civile :</strong> Spécialisation dans l'évacuation rapide et la 
-                    défense de populations vulnérables pendant les attaques démoniaques. J'ai sauvé plus 
-                    de 80 civils lors de mes missions passées.
+                    <strong style="color: #96e6ff;">Endurance Féroce :</strong> Je peux combattre pendant 
+                    des heures sans ralentir, telle une tempête qui ne faiblit jamais.
                 </p>
             </div>
 
             <div id="engagement" class="tab-content">
-                <h2>🔥 Serment du Pourfendeur</h2>
+                <h2>💨 Serment du Vent</h2>
                 
                 <p style="font-size: 1.2em; margin-bottom: 25px;">
-                    Je jure solennellement, sur l'honneur de ma famille disparue et de tous les 
-                    pourfendeurs tombés avant moi, que je servirai le Corps des Pourfendeurs de Démons 
-                    avec <span class="highlight">dévouement absolu et intégrité inébranlable</span>.
+                    Je jure sur les âmes de mon clan disparu et sur le vent qui traverse ces montagnes, 
+                    que je servirai le Corps des Pourfendeurs avec <span class="highlight">férocité 
+                    inébranlable et honneur absolu</span>.
                 </p>
 
-                <div style="background: rgba(255, 140, 0, 0.2); padding: 25px; border: 3px solid #ff8c00; border-radius: 10px; margin: 25px 0;">
-                    <h3 style="color: #ffd700; margin-top: 0;">Mes Engagements Sacrés :</h3>
+                <div style="background: rgba(100, 200, 255, 0.15); padding: 25px; border: 3px solid #64c8ff; border-radius: 10px; margin: 25px 0;">
+                    <h3 style="color: #c8f0ff; margin-top: 0;">Mes Engagements Sacrés :</h3>
                     
                     <p style="margin-top: 15px;">
-                        🔥 <strong>Protection des Innocents :</strong> Je placerai toujours la vie des 
-                        civils au-dessus de la mienne. Aucun innocent ne périra tant que je pourrai 
-                        encore tenir mon sabre.
+                        💨 <strong>Justice Implacable :</strong> Je traquerai les démons sans relâche. 
+                        Aucun ne trouvera refuge, aucun n'échappera au vent de la justice.
                     </p>
 
                     <p>
-                        🔥 <strong>Honneur et Discipline :</strong> Je suivrai les règles et la hiérarchie 
-                        du Corps avec respect et humilité. Les ordres de mes supérieurs seront exécutés 
-                        sans hésitation.
+                        💨 <strong>Protection des Innocents :</strong> Je serai le bouclier des faibles 
+                        et le glaive contre l'oppression démoniaque.
                     </p>
 
                     <p>
-                        🔥 <strong>Amélioration Continue :</strong> Je ne cesserai jamais de m'entraîner 
-                        et de perfectionner mes techniques. Chaque jour sera une opportunité de devenir 
-                        plus fort pour mieux protéger l'humanité.
+                        💨 <strong>Honneur du Clan :</strong> Chaque victoire restaure l'honneur des 
+                        Kurozatsu. Je ne faiblirai jamais.
                     </p>
 
                     <p>
-                        🔥 <strong>Fraternité d'Armes :</strong> Je protégerai mes camarades pourfendeurs 
-                        comme ma propre famille. Nous combattons ensemble, nous survivons ensemble.
+                        💨 <strong>Discipline et Excellence :</strong> Je perfectionnerai mon art chaque 
+                        jour, devenant toujours plus tranchant, plus rapide, plus mortel.
                     </p>
 
                     <p>
-                        🔥 <strong>Transmission du Savoir :</strong> Je partagerai mon expérience avec 
-                        les générations futures, perpétuant la flamme de notre cause à travers les âges.
+                        💨 <strong>Fraternité d'Armes :</strong> Mes camarades pourfendeurs peuvent 
+                        compter sur moi. Je combattrai à leurs côtés jusqu'à la mort.
                     </p>
 
                     <p style="margin-bottom: 0;">
-                        🔥 <strong>Combat jusqu'au Bout :</strong> Je ne fuirai jamais face à l'ennemi 
-                        si des vies sont en jeu. Ma lame ne sera rengainée que dans la victoire ou la mort.
+                        💨 <strong>Sacrifice Ultime :</strong> Si ma mort peut sauver ne serait-ce qu'une 
+                        vie innocente, j'irai vers elle sans hésitation.
                     </p>
                 </div>
 
-                <p style="text-align: center; margin-top: 35px; font-size: 1.3em; color: #ffd700; font-style: italic;">
-                    « Que ma flamme brûle éternellement pour protéger ceux qui ne peuvent se défendre »
+                <p style="text-align: center; margin-top: 35px; font-size: 1.3em; color: #c8f0ff; font-style: italic;">
+                    « Comme le vent qui ne peut être enchaîné, ma lame sera éternellement libre et féroce »
                 </p>
-
-                <div style="background: rgba(255, 140, 0, 0.15); padding: 20px; border-left: 4px solid #ffd700; margin-top: 30px; border-radius: 5px;">
-                    <p style="font-size: 1.1em; margin-bottom: 0;">
-                        En acceptant cette responsabilité de Kinoto, je comprends que les défis seront 
-                        plus grands, les dangers plus mortels, et les sacrifices plus profonds. Mais 
-                        <span class="highlight">comme le feu qui grandit face au vent, ma résolution 
-                        ne fera que se renforcer</span>. Je suis prêt à porter ce fardeau avec honneur 
-                        et fierté.
-                    </p>
-                </div>
             </div>
 
             <div id="hrp" class="tab-content">
-                <h2>👤 Informations HRP (Hors Rôle-Play)</h2>
+                <h2>👤 Informations HRP</h2>
                 
-                <h3 style="color: #ff8c00; margin-top: 30px;">📋 Contact</h3>
-                <div style="background: rgba(255, 140, 0, 0.15); padding: 20px; border-left: 4px solid #ff8c00; border-radius: 5px; margin: 20px 0;">
-                    <p style="margin-bottom: 10px;"><strong style="color: #ffaa55;">Steam ID :</strong> STEAM_0:0:86414025</p>
-                    <p><strong style="color: #ffaa55;">Discord :</strong> azur_levrai</p>
-                </div>
-
-                <h3 style="color: #ff8c00; margin-top: 30px;">📅 Disponibilités</h3>
-                <div style="background: rgba(255, 140, 0, 0.15); padding: 25px; border-left: 4px solid #ff8c00; border-radius: 5px; margin: 20px 0;">
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Lundi :</strong> 16h30 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Mardi :</strong> 16h30 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Mercredi :</strong> 16h30 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Jeudi :</strong> 16h30 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Vendredi :</strong> 16h30 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Samedi :</strong> 10h00 - 23h00</p>
-                    <p style="margin-bottom: 8px;"><strong style="color: #ffaa55;">Dimanche :</strong> 10h00 - 23h00</p>
-                    <p style="margin-top: 15px; color: #ffaa55; font-style: italic;">
-                        → Disponibilité totale : <span class="highlight">environ 50+ heures par semaine</span>
+                <h3 style="color: #64c8ff; margin-top: 30px;">📋 Informations Personnelles</h3>
+                <div style="background: rgba(100, 200, 255, 0.12); padding: 20px; border-left: 4px solid #64c8ff; border-radius: 5px; margin: 20px 0;">
+                    <p style="margin-bottom: 10px;"><strong style="color: #96e6ff;">Âge :</strong> 22 ans</p>
+                    <p style="margin-bottom: 10px;"><strong style="color: #96e6ff;">Steam ID :</strong> STEAM_0:0:86414025</p>
+                    <p style="margin-bottom: 10px;"><strong style="color: #96e6ff;">Discord :</strong> azur_levrai</p>
+                    <p><strong style="color: #96e6ff;">Temps de jeu Garry's Mod :</strong> <span style="color: #c8f0ff;">6798 heures</span> 🎮</p>
+                    <p style="margin-top: 10px; color: #96e6ff; font-style: italic; font-size: 0.95em;">
+                        → Expérience significative en RP sur GMod
                     </p>
                 </div>
 
-                <h3 style="color: #ff8c00; margin-top: 35px;">✅ Qualités HRP</h3>
-                
-                <div class="section-item">
-                    <h3>🎭 Passion pour le Roleplay</h3>
-                    <p>
-                        Je suis profondément investi dans le RP immersif et cohérent. Ma grande 
-                        disponibilité me permet d'être présent régulièrement et de m'impliquer 
-                        activement dans la vie du serveur et ses événements.
+                <h3 style="color: #64c8ff; margin-top: 30px;">📅 Disponibilités</h3>
+                <div style="background: rgba(100, 200, 255, 0.12); padding: 25px; border-left: 4px solid #64c8ff; border-radius: 5px; margin: 20px 0;">
+                    <p style="margin-bottom: 8px;"><strong style="color: #96e6ff;">Lundi-Vendredi :</strong> 16h30 - 23h00</p>
+                    <p style="margin-bottom: 8px;"><strong style="color: #96e6ff;">Weekend :</strong> 10h00 - 23h00</p>
+                    <p style="margin-top: 15px; color: #96e6ff; font-style: italic;">
+                        → Disponibilité : <span class="highlight">50+ heures par semaine</span>
                     </p>
                 </div>
 
-                <div class="section-item">
-                    <h3>📚 Connaissance de l'Univers</h3>
-                    <p>
-                        Excellent connaisseur de Demon Slayer, je comprends les subtilités des 
-                        Souffles, de la hiérarchie du Corps, et du lore général. Je peux interpréter 
-                        un Kinoto avec fidélité à l'œuvre originale.
-                    </p>
-                </div>
-
-                <div class="section-item">
-                    <h3>🤝 Esprit Collaboratif</h3>
-                    <p>
-                        Respectueux envers les autres joueurs et le staff. Je comprends que le RP 
-                        est un effort d'équipe et je suis toujours prêt à collaborer pour créer des 
-                        scénarios enrichissants pour tous.
-                    </p>
-                </div>
-
-                <div class="section-item">
-                    <h3>⚡ Réactivité</h3>
-                    <p>
-                        Facilement joignable sur Discord, je réponds rapidement aux sollicitations. 
-                        Ouvert aux feedbacks et capable de m'adapter aux besoins du serveur.
-                    </p>
-                </div>
-
-                <h3 style="color: #ff8c00; margin-top: 35px;">⚠️ Points d'Amélioration</h3>
-                
-                <div class="section-item" style="background: rgba(100, 50, 0, 0.2);">
-                    <h3>🔥 Perfectionnisme</h3>
-                    <p>
-                        Je peux être trop exigeant envers moi-même, cherchant à perfectionner chaque 
-                        détail. Je travaille à trouver un meilleur équilibre entre qualité et fluidité.
-                    </p>
-                </div>
-
-                <div class="section-item" style="background: rgba(100, 50, 0, 0.2);">
-                    <h3>⏰ Gestion du Temps</h3>
-                    <p>
-                        Ma grande disponibilité peut parfois me pousser à trop jouer. Je m'efforce 
-                        de maintenir un équilibre sain entre le jeu et mes autres responsabilités.
-                    </p>
-                </div>
-
-                <h3 style="color: #ff8c00; margin-top: 40px; text-align: center; font-size: 1.8em;">
-                    🔥 Pourquoi Me Choisir ?
+                <h3 style="color: #64c8ff; margin-top: 40px; text-align: center; font-size: 1.8em;">
+                    💨 Pourquoi Me Choisir ?
                 </h3>
                 
-                <div style="background: rgba(255, 140, 0, 0.2); padding: 30px; border: 3px solid #ff8c00; border-radius: 10px; margin: 20px 0;">
+                <div style="background: rgba(100, 200, 255, 0.15); padding: 30px; border: 3px solid #64c8ff; border-radius: 10px; margin: 20px 0;">
                     <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong style="color: #ffd700;">1. Personnage Développé</strong>
+                        <strong style="color: #c8f0ff;">1. Personnage Profond</strong>
                     </p>
                     <p style="margin-bottom: 20px;">
-                        Cette candidature démontre la profondeur de réflexion que j'ai investie dans 
-                        mon personnage. Backstory détaillée, motivations claires, objectifs précis - 
-                        je ne postule pas sur un coup de tête.
+                        Shinjiro Kurozatsu n'est pas qu'un simple pourfendeur - c'est un survivant avec 
+                        une histoire tragique, des motivations claires et une évolution constante.
                     </p>
 
                     <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong style="color: #ffd700;">2. Disponibilité Exceptionnelle</strong>
+                        <strong style="color: #c8f0ff;">2. Expérience Vérifiée</strong>
                     </p>
                     <p style="margin-bottom: 20px;">
-                        50+ heures par semaine signifient une présence régulière et fiable. Plus 
-                        d'opportunités de créer du contenu RP pour les autres joueurs, de participer 
-                        aux événements, et de contribuer à la dynamique du serveur.
+                        6798 heures sur GMod démontrent ma connaissance approfondie du RP et des 
+                        mécaniques de jeu.
                     </p>
 
                     <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong style="color: #ffd700;">3. Mentalité de Protecteur</strong>
+                        <strong style="color: #c8f0ff;">3. Engagement Total</strong>
                     </p>
                     <p style="margin-bottom: 20px;">
-                        En tant que Kinoto, je comprends que mon rôle est de créer du contenu positif, 
-                        d'aider les nouveaux joueurs, et d'enrichir l'expérience de tous. Je ne cherche 
-                        pas simplement le pouvoir, mais la responsabilité.
+                        50+ heures de disponibilité hebdomadaire garantissent une présence active et 
+                        une contribution constante au serveur.
                     </p>
 
                     <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong style="color: #ffd700;">4. Maturité RP</strong>
-                    </p>
-                    <p style="margin-bottom: 20px;">
-                        Je comprends l'importance du fairplay, du consentement mutuel, et du respect 
-                        entre joueurs. Mon objectif est que chacun passe un bon moment, que nous 
-                        soyons alliés ou adversaires en RP.
-                    </p>
-
-                    <p style="font-size: 1.15em; margin-bottom: 15px;">
-                        <strong style="color: #ffd700;">5. Créativité et Engagement</strong>
+                        <strong style="color: #c8f0ff;">4. Créateur de Contenu</strong>
                     </p>
                     <p style="margin-bottom: 0;">
-                        Cette candidature complète démontre mon investissement. Cette même créativité 
-                        et passion seront présentes dans chaque session de RP en tant que Kinoto.
+                        Mon objectif n'est pas juste de "jouer" mais de créer des expériences RP 
+                        mémorables pour l'ensemble de la communauté.
                     </p>
                 </div>
 
-                <p style="text-align: center; margin-top: 30px; font-size: 1.2em; color: #ffd700;">
-                    <strong>Je ne demande pas simplement un rang - je propose une contribution 
-                    significative et durable à la communauté du serveur.</strong>
-                </p>
+                <div style="background: linear-gradient(135deg, rgba(100, 200, 255, 0.2), rgba(150, 230, 255, 0.2)); padding: 30px; border: 2px solid #64c8ff; border-radius: 15px; margin-top: 40px; box-shadow: 0 0 20px rgba(100, 200, 255, 0.3);">
+                    <h3 style="color: #c8f0ff; text-align: center; margin-top: 0; margin-bottom: 20px; font-size: 1.5em;">
+                        🙏 Remerciements
+                    </h3>
+                    <p style="text-align: center; font-size: 1.15em; line-height: 1.8; color: #e0e0e0; margin-bottom: 15px;">
+                        Je remercie sincèrement <span style="color: #c8f0ff; font-weight: bold;">le staff</span> 
+                        pour le temps consacré à cette candidature. Votre travail pour maintenir un univers 
+                        immersif est remarquable.
+                    </p>
+                    <p style="text-align: center; font-size: 1.15em; line-height: 1.8; color: #e0e0e0; margin-bottom: 0;">
+                        Quelle que soit votre décision, je reste <span style="color: #c8f0ff; font-weight: bold;">
+                        déterminé</span> à contribuer positivement au serveur.
+                    </p>
+                    <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(100, 200, 255, 0.3);">
+                        <p style="font-size: 1.3em; color: #c8f0ff; font-style: italic; margin-bottom: 10px;">
+                            💨 Tel le vent, je reste libre et déterminé 💨
+                        </p>
+                        <p style="font-size: 1.1em; color: #96e6ff;">
+                            — Shinjiro Kurozatsu
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div id="fiche" class="tab-content">
@@ -989,9 +861,9 @@
 
                 <div class="character-banner">
                     <div class="character-info">
-                        <div class="character-icon">🔥</div>
-                        <div style="font-size: 2em; color: #ffffff; margin-bottom: 10px; font-weight: bold;">Hikaru Homura</div>
-                        <div class="character-rank">Kinoto - Souffle de la Flamme</div>
+                        <div class="character-icon">💨</div>
+                        <div style="font-size: 2em; color: #ffffff; margin-bottom: 10px; font-weight: bold;">Shinjiro Kurozatsu</div>
+                        <div class="character-rank">Hinoto - Souffle du Vent</div>
                     </div>
                 </div>
 
@@ -999,18 +871,18 @@
                     <div class="wiki-title">Informations Générales</div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Nom</div>
-                        <div class="wiki-value white">Hikaru Homura (炎 光)</div>
+                        <div class="wiki-label">Nom Complet</div>
+                        <div class="wiki-value white">Shinjiro Kurozatsu (黒颯 真二郎)</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Signification</div>
-                        <div class="wiki-value white">Hikaru = Lumière | Homura = Flamme</div>
+                        <div class="wiki-value white">Kuro = Noir | Zatsu = Tempête | Shin = Vrai | Jiro = Deuxième fils</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Surnom</div>
-                        <div class="wiki-value white">La Flamme Protectrice</div>
+                        <div class="wiki-value white">La Lame du Vent du Nord</div>
                     </div>
                 </div>
 
@@ -1018,38 +890,28 @@
                     <div class="wiki-title">Caractéristiques</div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Race</div>
-                        <div class="wiki-value white">Humain</div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Genre</div>
-                        <div class="wiki-value white">Masculin</div>
-                    </div>
-                    
-                    <div class="wiki-row">
                         <div class="wiki-label">Âge</div>
-                        <div class="wiki-value white">22 ans</div>
+                        <div class="wiki-value white">24 ans</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Taille</div>
-                        <div class="wiki-value white">178 cm (5'10")</div>
+                        <div class="wiki-value white">182 cm (6'0")</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Poids</div>
-                        <div class="wiki-value white">72 kg (158 lb)</div>
+                        <div class="wiki-value white">75 kg (165 lb)</div>
                     </div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Couleur des yeux</div>
-                        <div class="wiki-value white">Ambre doré</div>
+                        <div class="wiki-label">Yeux</div>
+                        <div class="wiki-value white">Gris orageux</div>
                     </div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Couleur des cheveux</div>
-                        <div class="wiki-value white">Noir avec reflets rouges-orangés</div>
+                        <div class="wiki-label">Cheveux</div>
+                        <div class="wiki-value white">Noir corbeau, courts et ébouriffés</div>
                     </div>
                 </div>
 
@@ -1058,7 +920,7 @@
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Affiliation</div>
-                        <div class="wiki-value gold">Corps des Pourfendeurs de Démons</div>
+                        <div class="wiki-value cyan">Corps des Pourfendeurs de Démons</div>
                     </div>
                     
                     <div class="wiki-row">
@@ -1068,47 +930,42 @@
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Rang Visé</div>
-                        <div class="wiki-value gold">Kinoto</div>
+                        <div class="wiki-value cyan">Hinoto</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Style de Combat</div>
-                        <div class="wiki-value gold">Souffle de la Flamme (炎の呼吸)</div>
+                        <div class="wiki-value cyan">Souffle du Vent (風の呼吸)</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Arme</div>
-                        <div class="wiki-value white">Katana Nichirin (garde en forme de flamme)</div>
+                        <div class="wiki-value white">Katana Nichirin (garde en forme de tourbillon)</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Couleur de Lame</div>
-                        <div class="wiki-value white">Rouge-orangé ardent</div>
+                        <div class="wiki-value white">Vert émeraude (Souffle du Vent)</div>
                     </div>
                 </div>
 
                 <div class="wiki-section">
-                    <div class="wiki-title">Statistiques de Combat</div>
+                    <div class="wiki-title">Statistiques</div>
                     
                     <div class="stats-container">
                         <div class="wiki-stat-box">
                             <div class="wiki-stat-label">Puissance</div>
-                            <div class="wiki-stat-value">8.0 / 10</div>
+                            <div class="wiki-stat-value">8.5 / 10</div>
                         </div>
                         
                         <div class="wiki-stat-box">
                             <div class="wiki-stat-label">Vitesse</div>
-                            <div class="wiki-stat-value">8.5 / 10</div>
+                            <div class="wiki-stat-value">9.5 / 10</div>
                         </div>
                         
                         <div class="wiki-stat-box">
                             <div class="wiki-stat-label">Technique</div>
                             <div class="wiki-stat-value">8.5 / 10</div>
-                        </div>
-                        
-                        <div class="wiki-stat-box">
-                            <div class="wiki-stat-label">Intelligence</div>
-                            <div class="wiki-stat-value">8.0 / 10</div>
                         </div>
                         
                         <div class="wiki-stat-box">
@@ -1120,219 +977,120 @@
                             <div class="wiki-stat-label">Détermination</div>
                             <div class="wiki-stat-value">10 / 10</div>
                         </div>
+                        
+                        <div class="wiki-stat-box">
+                            <div class="wiki-stat-label">Férocité</div>
+                            <div class="wiki-stat-value">9.5 / 10</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="wiki-section">
-                    <div class="wiki-title">Parcours de Pourfendeur</div>
+                    <div class="wiki-title">Parcours</div>
+                    
+                    <div class="wiki-row">
+                        <div class="wiki-label">Origine</div>
+                        <div class="wiki-value white">Clan Kurozatsu - Montagnes du Nord</div>
+                    </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Entrée au Corps</div>
-                        <div class="wiki-value white">Il y a 4 ans (après 18 mois d'entraînement)</div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Sélection Finale</div>
-                        <div class="wiki-value white">Mont Fujikasane - 7 survivants sur 34</div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Missions Accomplies</div>
-                        <div class="wiki-value gold">67 missions (92% de succès)</div>
+                        <div class="wiki-value white">Il y a 5 ans</div>
                     </div>
                     
                     <div class="wiki-row">
                         <div class="wiki-label">Démons Éliminés</div>
-                        <div class="wiki-value gold">43 démons</div>
+                        <div class="wiki-value cyan">58 démons</div>
                     </div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Civils Sauvés</div>
-                        <div class="wiki-value gold">82 vies sauvées</div>
+                        <div class="wiki-label">Missions Réussies</div>
+                        <div class="wiki-value cyan">74 missions (94% succès)</div>
                     </div>
                     
                     <div class="wiki-row">
-                        <div class="wiki-label">Progression</div>
-                        <div class="wiki-value white">
-                            Mizunoto → Mizunoe (3 mois)<br>
-                            Mizunoe → Kanoto (5 mois)<br>
-                            Kanoto → Kanoe (8 mois)
-                        </div>
+                        <div class="wiki-label">Spécialité</div>
+                        <div class="wiki-value white">Combat en terrain montagneux et zones ventées</div>
                     </div>
                 </div>
 
-                <div class="wiki-section">
-                    <div class="wiki-title">Personnalité</div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Traits Dominants</div>
-                        <div class="wiki-value white">
-                            Déterminé, protecteur, honorable, passionné, discipliné, empathique
-                        </div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Philosophie</div>
-                        <div class="wiki-value white">
-                            "Comme la flamme qui éclaire les ténèbres, nous devons être la lumière 
-                            d'espoir pour ceux qui ne peuvent se défendre"
-                        </div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Forces</div>
-                        <div class="wiki-value white">
-                            Leadership naturel, endurance exceptionnelle, loyauté absolue, 
-                            courage inébranlable, esprit d'équipe
-                        </div>
-                    </div>
-                    
-                    <div class="wiki-row">
-                        <div class="wiki-label">Faiblesses</div>
-                        <div class="wiki-value white">
-                            Tendance au surmenage, difficultés à abandonner une mission, 
-                            peut être trop protecteur au point de se mettre en danger
-                        </div>
-                    </div>
-                </div>
-
-                <div class="wiki-section">
-                    <div class="wiki-title">Citations Mémorables</div>
-                    
-                    <div style="background: rgba(255, 140, 0, 0.15); padding: 20px; border-left: 4px solid #ff8c00; margin: 15px 0; font-style: italic;">
-                        <p style="color: #e0e0e0; margin-bottom: 10px;">
-                            "Ma flamme ne s'éteindra jamais tant qu'il restera des innocents à protéger !"
-                        </p>
-                        <p style="color: #ffaa55; font-size: 0.9em;">— Pendant un combat désespéré</p>
-                    </div>
-                    
-                    <div style="background: rgba(255, 140, 0, 0.15); padding: 20px; border-left: 4px solid #ff8c00; margin: 15px 0; font-style: italic;">
-                        <p style="color: #e0e0e0; margin-bottom: 10px;">
-                            "Chaque vie que nous sauvons est une victoire contre les ténèbres. Ne l'oubliez jamais."
-                        </p>
-                        <p style="color: #ffaa55; font-size: 0.9em;">— À un jeune pourfendeur découragé</p>
-                    </div>
-                    
-                    <div style="background: rgba(255, 140, 0, 0.15); padding: 20px; border-left: 4px solid #ff8c00; margin: 15px 0; font-style: italic;">
-                        <p style="color: #e0e0e0; margin-bottom: 10px;">
-                            "Le feu peut détruire, mais il peut aussi protéger et purifier. C'est notre choix de décider comment l'utiliser."
-                        </p>
-                        <p style="color: #ffaa55; font-size: 0.9em;">— Philosophie personnelle</p>
-                    </div>
-                </div>
-
-                <div style="background: rgba(255, 140, 0, 0.25); padding: 25px; border: 3px solid #ff8c00; border-radius: 10px; margin-top: 30px; text-align: center;">
-                    <p style="font-size: 1.1em; color: #ffd700; font-weight: bold; margin-bottom: 10px;">
-                        ⚠️ NOTE DU MAÎTRE KAGAYA UBUYASHIKI ⚠️
+                <div style="background: rgba(100, 200, 255, 0.2); padding: 25px; border: 3px solid #64c8ff; border-radius: 10px; margin-top: 30px; text-align: center;">
+                    <p style="font-size: 1.1em; color: #c8f0ff; font-weight: bold; margin-bottom: 10px;">
+                        ⚠️ ÉVALUATION DU CORPS ⚠️
                     </p>
                     <p style="color: #e0e0e0; line-height: 1.8;">
-                        Hikaru Homura est un pourfendeur prometteur qui incarne les valeurs de notre Corps. 
-                        Sa <strong style="color: #ffd700;">détermination inébranlable</strong> et son 
-                        dévouement à la protection des innocents font de lui un candidat idéal pour le 
-                        rang de Kinoto. Sa maîtrise du Souffle de la Flamme progresse régulièrement, et 
-                        son leadership naturel inspire les pourfendeurs qui l'accompagnent en mission.
+                        Shinjiro Kurozatsu est un pourfendeur exceptionnel dont la <strong style="color: #c8f0ff;">
+                        maîtrise du Souffle du Vent</strong> rivalise avec celle des rangs supérieurs. 
+                        Sa férocité au combat et sa détermination inébranlable font de lui un candidat 
+                        idéal pour le rang de Hinoto.
                     </p>
-                    <p style="color: #ffaa55; margin-top: 15px; font-style: italic;">
-                        "Que sa flamme continue de brûler avec honneur et courage."
+                    <p style="color: #96e6ff; margin-top: 15px; font-style: italic;">
+                        "Tel le vent qui ne faiblit jamais, sa lame tranchera sans relâche."
                     </p>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>« Que la flamme de notre détermination illumine les ténèbres »</p>
-            <p style="color: #ffd700; font-size: 1.2em; margin-top: 10px;">🔥 Kinoto - Souffle de la Flamme 🔥</p>
+            <p>« Que le vent emporte nos ennemis et protège nos alliés »</p>
+            <p style="color: #c8f0ff; font-size: 1.2em; margin-top: 10px;">💨 Hinoto - Souffle du Vent 💨</p>
         </footer>
     </div>
 
     <script>
-        // Génération d'étincelles flottantes
-        function createEmber() {
-            const ember = document.createElement('div');
-            ember.className = 'ember';
-            ember.style.left = Math.random() * 100 + '%';
-            ember.style.bottom = '-10px';
-            ember.style.setProperty('--drift', (Math.random() - 0.5) * 100 + 'px');
-            ember.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            ember.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(ember);
-
-            setTimeout(() => ember.remove(), 8000);
-        }
-
-        // Créer continuellement des étincelles
-        setInterval(createEmber, 200);
-
-        // Particules de feu plus grandes
-        function createFireParticle() {
+        // Génération de particules de vent
+        function createWindParticle() {
             const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = Math.random() * 8 + 3 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.background = `radial-gradient(circle, ${
-                Math.random() > 0.5 ? '#ff8c00' : '#ff4500'
-            }, transparent)`;
-            particle.style.borderRadius = '50%';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.bottom = '-10px';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '1';
-            particle.style.boxShadow = '0 0 10px rgba(255, 140, 0, 0.8)';
+            particle.className = 'wind-particle';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.left = '-100px';
+            particle.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
             document.body.appendChild(particle);
 
-            const duration = Math.random() * 2000 + 3000;
-            const drift = (Math.random() - 0.5) * 200;
+            setTimeout(() => particle.remove(), 5000);
+        }
+
+        setInterval(createWindParticle, 150);
+
+        // Particules de vent tourbillonnantes
+        function createWindSwirl() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = Math.random() * 40 + 20 + 'px';
+            particle.style.height = '2px';
+            particle.style.background = `linear-gradient(90deg, transparent, rgba(150, 230, 255, ${Math.random() * 0.6 + 0.2}), transparent)`;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1';
+            document.body.appendChild(particle);
+
+            const duration = Math.random() * 1500 + 1000;
+            const angle = Math.random() * 360;
+            const distance = Math.random() * 200 + 100;
 
             particle.animate([
                 { 
-                    transform: 'translateY(0px) translateX(0px) scale(1)', 
-                    opacity: 1 
+                    transform: 'translate(0, 0) rotate(0deg)',
+                    opacity: 0 
                 },
                 { 
-                    transform: `translateY(-${window.innerHeight * 0.3}px) translateX(${drift * 0.5}px) scale(1.2)`, 
-                    opacity: 0.8 
+                    transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${angle}deg)`,
+                    opacity: 1
                 },
                 { 
-                    transform: `translateY(-${window.innerHeight}px) translateX(${drift}px) scale(0.5)`, 
+                    transform: `translate(${Math.cos(angle) * distance * 2}px, ${Math.sin(angle) * distance * 2}px) rotate(${angle * 2}deg)`,
                     opacity: 0 
                 }
             ], {
                 duration: duration,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                easing: 'ease-out'
             }).onfinish = () => particle.remove();
         }
 
-        setInterval(createFireParticle, 100);
-
-        // Effet de lueur pulsante aléatoire
-        function createFlameGlow() {
-            const glow = document.createElement('div');
-            glow.style.position = 'fixed';
-            glow.style.width = '200px';
-            glow.style.height = '200px';
-            glow.style.background = 'radial-gradient(circle, rgba(255, 140, 0, 0.3), transparent)';
-            glow.style.borderRadius = '50%';
-            glow.style.left = Math.random() * 100 + '%';
-            glow.style.top = Math.random() * 100 + '%';
-            glow.style.pointerEvents = 'none';
-            glow.style.zIndex = '0';
-            document.body.appendChild(glow);
-
-            glow.animate([
-                { opacity: 0, transform: 'scale(0.5)' },
-                { opacity: 0.6, transform: 'scale(1.5)' },
-                { opacity: 0, transform: 'scale(2)' }
-            ], {
-                duration: 2000,
-                easing: 'ease-out'
-            }).onfinish = () => glow.remove();
-        }
-
-        setInterval(() => {
-            if (Math.random() > 0.7) {
-                createFlameGlow();
-            }
-        }, 3000);
+        setInterval(createWindSwirl, 200);
 
         function openTab(tabName) {
             const tabs = document.querySelectorAll('.tab');
@@ -1344,13 +1102,11 @@
             event.target.classList.add('active');
             document.getElementById(tabName).classList.add('active');
 
-            // Effet de flamme lors du changement d'onglet
             for(let i = 0; i < 5; i++) {
-                setTimeout(() => createFireParticle(), i * 50);
+                setTimeout(() => createWindSwirl(), i * 50);
             }
         }
 
-        // Effet de parallaxe subtil
         document.addEventListener('mousemove', (e) => {
             const moveX = (e.clientX - window.innerWidth / 2) * 0.003;
             const moveY = (e.clientY - window.innerHeight / 2) * 0.003;
@@ -1358,23 +1114,11 @@
             document.querySelector('.content-container').style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
 
-        // Animation au chargement
         window.addEventListener('load', () => {
-            for(let i = 0; i < 20; i++) {
-                setTimeout(() => createFireParticle(), i * 100);
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => createWindSwirl(), i * 100);
             }
         });
-
-        // Effet de scintillement sur le symbole de flamme
-        const flameSymbol = document.querySelector('.flame-symbol');
-        setInterval(() => {
-            if (Math.random() > 0.8) {
-                flameSymbol.style.filter = 'brightness(1.5) drop-shadow(0 0 40px rgba(255, 140, 0, 1))';
-                setTimeout(() => {
-                    flameSymbol.style.filter = '';
-                }, 100);
-            }
-        }, 500);
     </script>
 </body>
 </html>
